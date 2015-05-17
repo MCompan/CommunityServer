@@ -23,6 +23,7 @@
 					}
 				}
 			 });
+			//보완 필요
 			$("#mainForm").load("LoginForm.jsp");
 		});
 

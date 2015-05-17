@@ -15,14 +15,17 @@
 		MemberManagementProcessing manager = MemberManagementProcessing.getInstance();
 		
 		member.setUserNumber(-1);
+		member.setUserEmail(request.getParameter("userEmail"));
+		member.setUserPassword(request.getParameter("userPassword"));
 		int state = -1;
 		//state = manager.Registration(member);
 		
 		out.println(state);
-	}
-	else if(type.equals("login")) {
+	} else if(type.equals("login")) {
 		MemberManagementProcessing manager = MemberManagementProcessing.getInstance();
-		
+
+		member.setUserEmail(request.getParameter("userEmail"));
+		member.setUserPassword(request.getParameter("userPassword"));
 		int state = -1;
 		//state = manager.Login(member);
 		
@@ -30,7 +33,10 @@
 			request.getParameter("userPassword").equals("123")) {
 			state = 2;
 		}
-		if(state == 1) {
+		else if(request.getParameter("userEmail").equals("null")) {
+				state = -4; //Wrong Email
+		}
+		if(state == 2) {
 			session.setAttribute("userEmail", request.getParameter("userEmail"));
 			
 			Cookie emailCookie = new Cookie("userEmail", request.getParameter("userEmail"));
@@ -42,17 +48,16 @@
 		}
 		
 		out.println(state);
-	}
-	else if(type.equals("changeEmail")) {
+	} else if(type.equals("changeEmail")) {
 		MemberManagementProcessing manager = MemberManagementProcessing.getInstance();
 		
 		member.setUserEmail(session.getAttribute("userEmail").toString());
+		String newEmail = request.getParameter("newEmail");
 		int state = -1;
-		//state = manager.ChangeEmail(member, request.getParameter("newEmail"));
+		//state = manager.ChangeEmail(member, newEmail);
 		
 		out.println(state);
-	}
-	else if(type.equals("withdrawal")) {
+	} else if(type.equals("withdrawal")) {
 		MemberManagementProcessing manager = MemberManagementProcessing.getInstance();
 
 		member.setUserEmail(session.getAttribute("userEmail").toString());
@@ -60,11 +65,18 @@
 		//state = manager.Withdrawal(member);
 		
 		out.println(state);
-	}
-	else if(type.equals("logout")) {
+	} else if(type.equals("logout")) {
 		int state = 1;
 		
 		session.invalidate();
+		
+		out.println(state);
+	} else if(type.equals("FB.login")) {
+		MemberManagementProcessing manager = MemberManagementProcessing.getInstance();
+		
+		member.setUserID(request.getParameter("userID"));
+		int state = -1;
+		//state = manager.LoginWithFacebook(member);
 		
 		out.println(state);
 	}
