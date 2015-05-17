@@ -22,8 +22,35 @@ public class MemberManagementProcessing {
     private Connection getConnection() throws Exception {
         Context initCtx = new InitialContext();
         Context envCtx = (Context) initCtx.lookup("java:comp/env");
-        DataSource ds = (DataSource)envCtx.lookup("jdbc/*");
+        DataSource ds = (DataSource)envCtx.lookup("jdbc/CommunityServerDatabase");
+    	
         return ds.getConnection();
+    }
+    
+    public String ViewQuery() {
+		Connection connection = null;
+        PreparedStatement pStatement = null;
+		ResultSet resultSet= null;
+		String result = "::\n";
+		
+		try{
+			connection = getConnection();
+        	pStatement = connection.prepareStatement(
+                	"select * "
+                	+ "from Users");
+          resultSet = pStatement.executeQuery();
+          while(resultSet.next()) {
+        	  result += resultSet.getString("userEmail");
+          }
+          
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+            if (pStatement != null) try { pStatement.close(); } catch(SQLException ex) {}
+            if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+        }
+		return result;
     }
 
     public int Login(MemberDataBean member) {
@@ -41,8 +68,8 @@ public class MemberManagementProcessing {
         	pStatement = connection.prepareStatement(
             	"select userPassword "
             	+ "from Users "
-            	+ "where userID = ?");
-        	pStatement.setString(1, member.getUserID());
+            	+ "where userEmail = ?");
+        	pStatement.setString(1, member.getUserEmail());
         	resultSet = pStatement.executeQuery();
         	
 			if(resultSet.next()){
@@ -70,7 +97,7 @@ public class MemberManagementProcessing {
 		int nextUserNumber = -1;
 		int state = -1;
 		
-		if(CheckInvalidEmail(member)) { 
+		if(!CheckInvalidEmail(member)) { 
 			state = -2;	//Overlap Email
 			return state; 
 		}
@@ -92,7 +119,7 @@ public class MemberManagementProcessing {
 					"insert into Users "
 					+ "values (?,?,?,?)");
 			pStatement.setInt(1, nextUserNumber);
-			pStatement.setString(2, "null");
+			pStatement.setString(2, member.getUserEmail());
 			pStatement.setString(3, member.getUserEmail());
 			pStatement.setString(4, bcPass);
 			pStatement.executeUpdate();
@@ -110,7 +137,6 @@ public class MemberManagementProcessing {
     public int ChangeEmail(MemberDataBean member, String newEmail) {
 		Connection connection = null;
         PreparedStatement pStatement = null;
-        ResultSet resultSet = null;
     	int state = -1;
     	
 		if(CheckInvalidEmail(member)) { 
@@ -127,6 +153,7 @@ public class MemberManagementProcessing {
 					+ "where userEmail = ?");
 			pStatement.setString(1, newEmail);
 			pStatement.setString(2, member.getUserEmail());
+			pStatement.executeUpdate();
 			state = 1; //Success change
     	} catch(Exception e) {
     		e.printStackTrace();
@@ -140,7 +167,6 @@ public class MemberManagementProcessing {
     public int Withdrawal(MemberDataBean member) {
 		Connection connection = null;
         PreparedStatement pStatement = null;
-        ResultSet resultSet = null;
     	int state = -1;
     	
     	try{
@@ -151,6 +177,7 @@ public class MemberManagementProcessing {
 					+ "from Users "
 					+ "where userEmail = ?");
 			pStatement.setString(1, member.getUserEmail());
+			pStatement.executeUpdate();
 			state = 1; //Success delete
     	} catch(Exception e) {
     		e.printStackTrace();
@@ -175,6 +202,7 @@ public class MemberManagementProcessing {
 					+ "where userEmail = ?");
 			pStatement.setString(1, member.getUserEmail());
 			resultSet = pStatement.executeQuery();
+			isValid = true;
 			if(resultSet.next()) {
 				isValid = false; //Overlap Email
 			}
@@ -248,7 +276,7 @@ public class MemberManagementProcessing {
 			pStatement.setString(2, userID);
 			pStatement.setString(3, "null");
 			pStatement.setString(4, "null");
-			pStatement.executeQuery();
+			pStatement.executeUpdate();
 			
 			state = true;
 		} catch(Exception e) {

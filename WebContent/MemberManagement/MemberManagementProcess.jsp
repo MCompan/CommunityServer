@@ -18,7 +18,12 @@
 		member.setUserEmail(request.getParameter("userEmail"));
 		member.setUserPassword(request.getParameter("userPassword"));
 		int state = -1;
-		//state = manager.Registration(member);
+		if(request.getParameter("userEmail").equals("null")) {
+			state = -4; //Wrong Email
+			out.println(state);
+			return;
+		}
+		state = manager.Registration(member);
 		
 		out.println(state);
 	} else if(type.equals("login")) {
@@ -27,7 +32,7 @@
 		member.setUserEmail(request.getParameter("userEmail"));
 		member.setUserPassword(request.getParameter("userPassword"));
 		int state = -1;
-		//state = manager.Login(member);
+		state = manager.Login(member);
 		
 		if(request.getParameter("userEmail").equals("admin") &&
 			request.getParameter("userPassword").equals("123")) {
@@ -36,7 +41,7 @@
 		else if(request.getParameter("userEmail").equals("null")) {
 				state = -4; //Wrong Email
 		}
-		if(state == 2) {
+		if(state > 0) {
 			session.setAttribute("userEmail", request.getParameter("userEmail"));
 			
 			Cookie emailCookie = new Cookie("userEmail", request.getParameter("userEmail"));
@@ -54,7 +59,12 @@
 		member.setUserEmail(session.getAttribute("userEmail").toString());
 		String newEmail = request.getParameter("newEmail");
 		int state = -1;
-		//state = manager.ChangeEmail(member, newEmail);
+		if(member.getUserEmail() == "null") {
+			state = -3;
+			out.println(state);
+			return;
+		}
+		state = manager.ChangeEmail(member, newEmail);
 		
 		out.println(state);
 	} else if(type.equals("withdrawal")) {
@@ -62,7 +72,12 @@
 
 		member.setUserEmail(session.getAttribute("userEmail").toString());
 		int state = -1;
-		//state = manager.Withdrawal(member);
+		if(member.getUserEmail() == "null") {
+			state = -2;
+			out.println(state);
+			return;
+		}
+		state = manager.Withdrawal(member);
 		
 		out.println(state);
 	} else if(type.equals("logout")) {
@@ -73,10 +88,11 @@
 		out.println(state);
 	} else if(type.equals("FB.login")) {
 		MemberManagementProcessing manager = MemberManagementProcessing.getInstance();
+		session.setAttribute("userEmail", "null");
 		
 		member.setUserID(request.getParameter("userID"));
 		int state = -1;
-		//state = manager.LoginWithFacebook(member);
+		state = manager.LoginWithFacebook(member);
 		
 		out.println(state);
 	}

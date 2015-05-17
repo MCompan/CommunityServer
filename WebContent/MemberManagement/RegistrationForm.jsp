@@ -22,7 +22,8 @@
 					$("#result").text(data);
 					if(data == 1) {
 						//Success Registration
-						$("#result").text("success");
+						$("#result").text("Success Registration");
+						$("#mainForm").load("LoginForm.jsp");
 					}
 					else if(data == -1) {
 						//Can not Connect

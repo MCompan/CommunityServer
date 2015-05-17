@@ -41,18 +41,19 @@
 				url:"MemberManagementProcess.jsp",
 				data:query,
 				success:function(data){
-					$("#result").text(data);
 					if(data == 1) {
 						//Success Change
 						$("#result").text("Success Change Email");
-					}
-					else if(data == -1) {
+						$("#mainForm").load("LoginForm.jsp");
+					} else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");
-					}
-					else if(data == -2) {
+					} else if(data == -2) {
 						//Overlap Email
 						$("#result").text("Overlap Email");
+					} else if(data == -3) {
+						//Can not process with Facebook account
+						$("#result").text("Can not process with Facebook account");
 					}
 				}
 			 });
@@ -69,10 +70,13 @@
 					if(data == 1) {
 						//Success Withdrawal
 						$("#result").text("Success Withdrawal");
-					}
-					else if(data == -1) {
+						$("#mainForm").load("LoginForm.jsp");
+					} else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");
+					} else if(data == -2) {
+						//Can not process with Facebook account
+						$("#result").text("Can not process with Facebook account");
 					}
 				}
 			 });
@@ -81,6 +85,9 @@
 </script>
 
 <table border="2" style="font-size: large; border-color: blue; border-collapse: collapse;">
+	<tr>
+		<td colspan="3" align="center">Management
+	</tr>
 	<tr align="center">
 		<td colspan="2"><button id="Logout">로그아웃</button>
 	</tr>

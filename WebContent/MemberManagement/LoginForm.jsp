@@ -70,6 +70,10 @@
 		js.src = "//connect.facebook.net/en_US/sdk.js";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
+	function checkLoginState() {
+		statusChangeCallback(response);
+		uid = response.authResponse.userID;
+	}
 	function statusChangeCallback(response) {
 		var userID = response.authResponse.userID;
 		var query = {
@@ -81,7 +85,11 @@
 				url:"MemberManagementProcess.jsp",
 				data:query,
 				success:function(data){
-					if(data == 1) {
+					if(data == 2) {
+						//Success Registration and Login with Facebook
+						$("#result").text("Success Registration and Login with Facebook");
+						$("#mainForm").load("ManagementForm.jsp");
+					}else if(data == 1) {
 						//Success Login
 						$("#result").text("Success Login with Facebook");
 						$("#mainForm").load("ManagementForm.jsp");
@@ -149,7 +157,7 @@ try {
 	</tr>
 	<tr align="center">
 		<td><button id="registration">회원가입</button>
-		<td align="char"><div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
+		<td align="char"><fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
 		<td><button id="login">로그인</button>
 	</tr>
 </table>
