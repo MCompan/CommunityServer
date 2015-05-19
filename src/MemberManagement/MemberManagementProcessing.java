@@ -139,7 +139,7 @@ public class MemberManagementProcessing {
         PreparedStatement pStatement = null;
     	int state = -1;
     	
-		if(CheckInvalidEmail(member)) { 
+		if(!CheckInvalidEmail(member)) { 
 			state = -2;	//Overlap Email
 			return state; 
 		}

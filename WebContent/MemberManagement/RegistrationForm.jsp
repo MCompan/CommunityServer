@@ -56,7 +56,7 @@
 	</tr>
 	<tr align="right">
 		<td>Password
-		<td><input type="text" id="userPassword" name="userPassword">
+		<td><input type="password" id="userPassword" name="userPassword">
 	</tr>
 	<tr align="center">
 		<td><button id="submit">완료</button>

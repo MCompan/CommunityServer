@@ -153,7 +153,7 @@ try {
 	</tr>
 	<tr align="right">
 		<td>Password
-		<td colspan="2"><input type="text" id="userPassword" name="userPassword" value="<%=getPasswordCookie()%>">
+		<td colspan="2"><input type="password" id="userPassword" name="userPassword" value="<%=getPasswordCookie()%>">
 	</tr>
 	<tr align="center">
 		<td><button id="registration">회원가입</button>
