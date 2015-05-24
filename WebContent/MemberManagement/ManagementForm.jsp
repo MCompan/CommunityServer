@@ -10,7 +10,7 @@
 				type:"logout",}
 			$.ajax({
 				type:"post",
-				url:"MemberManagementProcess.jsp",
+				url:"Processing.jsp",
 				data:query,
 				success:function(data){
 					if(data == 1) {
@@ -38,7 +38,7 @@
 					newEmail:newEmail};
 			$.ajax({
 				type:"post",
-				url:"MemberManagementProcess.jsp",
+				url:"Processing.jsp",
 				data:query,
 				success:function(data){
 					if(data == 1) {
@@ -64,7 +64,7 @@
 					type:"withdrawal",}
 			$.ajax({
 				type:"post",
-				url:"MemberManagementProcess.jsp",
+				url:"Processing.jsp",
 				data:query,
 				success:function(data){
 					if(data == 1) {

@@ -16,7 +16,7 @@
 					userPassword:userPassword};
 			$.ajax({
 				type:"post",
-				url:"MemberManagementProcess.jsp",
+				url:"Processing.jsp",
 				data:query,
 				success:function(data){
 					$("#result").text(data);

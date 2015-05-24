@@ -7,6 +7,29 @@
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 	$(document).ready(function() {
+		var cookie = document.cookie;
+		if(cookie.length > 0) {
+			var startEmailIndex = cookie.indexOf("userEmail");
+			var endEmailIndex;
+			if(startEmailIndex != -1) {
+				startEmailIndex += "userEmail".length;
+				endEmailIndex = cookie.indexOf(";", startEmailIndex);
+				if(endEmailIndex == -1) {
+					endEmailIndex = cookie.length;
+				}
+				$("#userEmail").val(cookie.substring(startEmailIndex+1, endEmailIndex));
+			}
+			var startPasswordIndex = cookie.indexOf("userPassword");
+			var endPasswordIndex; 
+			if(startPasswordIndex != -1) {
+				startPasswordIndex += "userPassword".length;
+				endPasswordIndex = cookie.indexOf(";", startPasswordIndex);
+				if(endPasswordIndex == -1) {
+					endPasswordIndex = cookie.length;
+				}
+				$("#userPassword").val(cookie.substring(startPasswordIndex+1, endPasswordIndex));
+			}
+		}
 		$("#registration").click(function() {
 			$("#mainForm").load("RegistrationForm.jsp");
 		});
@@ -20,7 +43,7 @@
 					userPassword:userPassword};
 			$.ajax({
 				type:"post",
-				url:"MemberManagementProcess.jsp",
+				url:"Processing.jsp",
 				data:query,
 				success:function(data){
 					if(data == 2) {
@@ -82,7 +105,7 @@
 		if (response.status === 'connected' || response.status === 'not_authorized') {
 			$.ajax({
 				type:"post",
-				url:"MemberManagementProcess.jsp",
+				url:"Processing.jsp",
 				data:query,
 				success:function(data){
 					if(data == 2) {
@@ -107,53 +130,17 @@
 	}
 </script>
 
-
-<%!
-Cookie[] cookies;
-Cookie emailCookie;
-Cookie passwordCookie;
-String getEmailCookie() {
-	try{
-		if(emailCookie.getName().equals("userEmail")) {
-			return emailCookie.getValue();
-		}
-	}catch(Exception e) {}
-	return "";
-}
-String getPasswordCookie() {
-	try{
-		if(passwordCookie.getName().equals("userPassword")) {
-			return passwordCookie.getValue();
-		}
-	}catch(Exception e) {}
-	return "";
-}
-%>
-<%
-try {
-	cookies = request.getCookies();
-	for(int i = 0; i < cookies.length; i++) {
-		if(cookies[i].getName().equals("userEmail")) {
-			emailCookie = cookies[i];
-		}
-		else if(cookies[i].getName().equals("userPassword")) {
-			passwordCookie = cookies[i];
-		}
-	}
-}catch(Exception e) {}
-%>
-
 <table border="2" style="font-size: large; border-color: blue; border-collapse: collapse;">
 	<tr>
 		<td colspan="3" align="center">Login
 	</tr>
 	<tr>
 		<td align="right">Email
-		<td colspan="2"><input type="text" id="userEmail" name="userEmail" value="<%=getEmailCookie()%>" autofocus>
+		<td colspan="2"><input type="text" id="userEmail" name="userEmail" value="" autofocus>
 	</tr>
 	<tr align="right">
 		<td>Password
-		<td colspan="2"><input type="password" id="userPassword" name="userPassword" value="<%=getPasswordCookie()%>">
+		<td colspan="2"><input type="password" id="userPassword" name="userPassword" value="">
 	</tr>
 	<tr align="center">
 		<td><button id="registration">회원가입</button>
