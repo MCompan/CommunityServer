@@ -23,7 +23,7 @@
 					if(data == 1) {
 						//Success Registration
 						$("#result").text("Success Registration");
-						$("#mainForm").load("LoginForm.jsp");
+						window.location.href = "Main.jsp";
 					}
 					else if(data == -1) {
 						//Can not Connect
@@ -41,7 +41,7 @@
 			 });
 		});
 		$("#cancel").click(function() {
-			$("#mainForm").load("LoginForm.jsp");
+			window.location.href = "Main.jsp";
 		});
 	});
 </script>

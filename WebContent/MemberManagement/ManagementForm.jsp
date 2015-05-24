@@ -23,8 +23,7 @@
 					}
 				}
 			 });
-			//보완 필요
-			$("#mainForm").load("LoginForm.jsp");
+			window.location.href = "Main.jsp";
 		});
 
 		$("#ChangeEmail").click(function() {
@@ -44,7 +43,7 @@
 					if(data == 1) {
 						//Success Change
 						$("#result").text("Success Change Email");
-						$("#mainForm").load("LoginForm.jsp");
+						window.location.href = "Main.jsp";
 					} else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");
@@ -70,7 +69,7 @@
 					if(data == 1) {
 						//Success Withdrawal
 						$("#result").text("Success Withdrawal");
-						$("#mainForm").load("LoginForm.jsp");
+						window.location.href = "Main.jsp";
 					} else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");
