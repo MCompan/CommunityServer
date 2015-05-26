@@ -52,7 +52,8 @@
 					}else if(data == 1) {
 						//Success Login
 						$("#result").text("Success Login");
-						$("#mainForm").load("ManagementForm.jsp");
+						window.location.href = "../BulletinBoard/Main.jsp"
+						//$("#mainForm").load("../BulletinBoard/WritingForm.jsp");
 					}else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");
