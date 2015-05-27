@@ -90,15 +90,17 @@ try{
 
 <table border="2" style="font-size: large; border-color: blue; border-collapse: collapse;">
 	<tr>
-		<td>No. <div id="num"><%=num %></div>
-		<td colspan="2"><input type="text" id="subject" value="<%=subject %>">
+		<td>No. <label id="num"><%=num %></label>
+		<td colspan="2">Subject: 
+			<input type="text" <%if(!isWriter) {%>readonly="readonly"<%} %> id="subject" value="<%=subject %>">
 	<tr>
 		<td colspan="2">Email: <%=email %>
 		<td>Read Count: <%=readCount %>
 	<tr>
 		<td colspan="3">Written at: <%=date %>
 	<tr>
-		<td colspan="3"><textarea id="content" rows="10" cols="50"><%=content %></textarea>
+		<td colspan="3">
+			<textarea id="content" <%if(!isWriter) {%>readonly="readonly"<%} %> rows="10" cols="50"><%=content %></textarea>
 	<tr>
 		<td><%if(isWriter) {%><button id="modify">수정</button> <%} %>
 		<td><%if(isWriter) {%><button id="delete">삭제</button> <%} %>
