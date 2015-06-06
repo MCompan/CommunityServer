@@ -34,7 +34,7 @@
 	} else if(type.equals("modify")) {
 		int state = -1;
 		
-		BoardDataBean original = manager.GetWriting(Integer.parseInt(request.getParameter("num")));
+		BoardDataBean original = manager.GetWriting(Integer.parseInt(request.getParameter("num")), false);
 
 		data = original;
 
@@ -52,9 +52,6 @@
 		state = manager.DeleteWriting(num);
 		
 		out.println(state);
-	} else if(type.equals("view")) {
-		int num = Integer.parseInt(request.getParameter("num"));
-		manager.UpdateReadCount(num);
 	}
 
 %>
