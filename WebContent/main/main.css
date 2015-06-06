@@ -1,0 +1,213 @@
+@CHARSET "UTF-8";
+
+#k_header {
+
+	/*중앙 정렬*/
+
+	width:960px;
+
+	margin:0 auto;
+	
+
+	/*절대 좌표*/
+
+	height:160px;
+
+	position:relative;
+	
+	background-image: url("./test.png"); 
+	
+
+}
+
+
+
+
+/* #k_title 위치 조정 */
+
+#k_header > #k_title {
+
+	position:absoulute;
+
+	left:20px;
+
+	top:30px;
+	
+}
+
+
+
+
+/* #k_gnb 위치 조정 */
+
+#k_header > #k_gnb {
+
+	position:absolute;
+
+	right:0;
+
+	top:0;
+
+}
+
+
+
+
+/* #k_lnb 위치 조정 */
+
+#k_header > #k_lnb {
+
+	position:absolute;
+
+	left:0;
+
+	bottom:10px;
+
+}
+
+
+
+
+/* h1, h2 크기 조정 */
+
+#k_header h1 {
+
+	font-size:36px;
+
+}
+
+
+
+
+#k_header h2{
+
+	font-size:25px;
+
+}
+
+#k_gnb > ul > li > a:hover{
+
+	background:black;
+
+	color:white;
+
+}
+
+#k_gnb > ul > li:first-child > a {border-radius:8px 0 0 8px;}
+
+#k_gnb > ul > li:last-child > a {border-radius:0 8px 8px 0;}
+
+
+#k_gnb > ul {overflow:hidden;}
+
+#k_gnb > ul > li {float:left;}
+
+#k_gnb > ul > li > a{
+
+	display:block;
+
+	border:1px solid black;
+
+	padding:2px 10px;
+
+}
+
+
+
+
+#k_lnb > ul > li > a:hover{
+
+	background:black;
+
+	color:white;
+
+}
+
+#k_lnb > ul > li:first-child > a {border-radius:8px 0 0 8px;}
+
+#k_lnb > ul > li:last-child > a {border-radius:0 8px 8px 0;}
+
+
+/* 수평 메뉴 */
+
+#k_lnb > ul {overflow:hidden;}
+
+#k_lnb > ul > li {float:left;}
+
+#k_lnb > ul > li > a{
+
+	display:block;
+
+	border:1px solid black;
+
+	padding:10px 20px;
+
+}
+
+#content h1{font-size:30px;}
+
+#content {
+
+	width:960px;
+
+	margin:0 auto;
+
+	overflow:hidden;
+
+}
+
+
+
+
+#content > #k_section {
+
+	width:750px;
+
+	float:left;
+
+	border:solid 1px black;
+
+}
+
+
+
+
+#content > #k_aside {
+
+	width:200px;
+
+	float:right;
+
+	border:solid 1px black;
+
+}
+
+#foot {
+
+	width:960px;
+
+	height:50px;
+
+	margin:0 auto;
+
+	margin-bottom:10px;
+
+	box-sizing:border-box;
+
+	padding:10px;
+
+	border:solid 1px black;
+
+	text-align:center;
+
+}
+
+/* body */
+
+b {font-weight:bolder;}
+
+h1 {font-size:36px;font-weight:bolder;}
+
+h2{font-size:26px;font-weight:bolder;}
+
+h3 {font-size:20px;font-weight:bolder;}

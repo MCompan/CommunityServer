@@ -1,0 +1,148 @@
+body {
+	text-align:center;
+	background:#0c0c0c
+}
+a {
+	text-decoration:none;
+	color:#f3ffc7
+}
+a:hover {
+	text-decoration: underline;
+	color:#f3ffc7
+}
+#wrap {
+	width:800px;
+	text-align:left;
+	margin:0 auto;
+	color:#8a8a8a
+}
+.float-l {
+	float:left
+}
+.folat-r {
+	float:center
+}
+.clearfix {
+	clear:both
+}
+/* header */
+#header {
+	background:url(images/header1.png) no-repeat;
+	height:226px
+}
+#header h1 {
+	font-size:38px;
+	padding-top: 40px;
+	padding-left: 90px;
+	color:#9cdbfb
+}
+#header div {
+	font-size:16px;
+	padding-left: 90px;
+}
+ul#nav {
+	position:absolute;
+	top:180px;
+	padding-left:40px;
+	overflow:hidden;
+}
+ul#nav li {
+	float:left;
+	height:50px;
+	padding:0 50px;
+	color:#FFFFFF
+}
+ul#nav a {
+	color:#fff
+}
+/* content */
+#content {
+	padding:0 50px
+}
+#content .left {
+	width:352px;
+	padding-top: 30px;
+}
+#content .left h2 {
+	font-size:30px;
+	background: url(images/left.gif) no-repeat;
+	height:55px;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+/*#content p {
+	padding:20px 20px;
+}*/
+#content .right {
+	width: 300px;
+	padding-top: 30px;
+}
+#content .right h2 {
+	font-size:30px;
+	height:55px;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+#top li {
+	list-style:url(images/a1.gif) inside
+}
+#top a {
+	color:#f3ffc7;
+	line-height:20px
+}
+.submit {
+	background:url(images/a2.gif) no-repeat;
+	border:0px;
+	width:21px
+}
+ul#meun {
+	padding-bottom:20px
+}
+ul#meun li a {
+	padding-left:5px
+}
+ul#meun, #bm form {
+	padding-left: 30px;
+}
+/* footer */
+#footer {
+	clear:both;
+	background:url(images/footer.gif) no-repeat;
+	height:92px;
+	text-align:center
+}
+#ftlink {
+	padding-top: 12px;
+	padding-bottom:15px
+}
+div#scc {
+	position:absolute;
+	top:50px;
+	padding-left: 450px;
+}
+#scc h2 {
+	width:50px;
+	display:inline;
+	font-size:22px
+}
+#scc form#sc {
+	display:inline;
+}
+#scc form#sc input {
+	padding:2px
+}
+ul#nav .btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  color: #ffffff;
+  font-size: 20px;
+  background: #0f0f0f;
+  padding: 0px 0px 0px 0px;
+  text-decoration: none; 
+}
+
+ul#nav .btn:hover {
+  background: #63686b;
+  text-decoration: none;
+}
