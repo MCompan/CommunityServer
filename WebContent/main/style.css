@@ -1,6 +1,6 @@
 body {
 	text-align:center;
-	background:#0c0c0c
+	background:#000000;
 }
 a {
 	text-decoration:none;
@@ -20,7 +20,7 @@ a:hover {
 	float:left
 }
 .folat-r {
-	float:center
+	padding-left: 180px;
 }
 .clearfix {
 	clear:both
@@ -131,7 +131,7 @@ div#scc {
 #scc form#sc input {
 	padding:2px
 }
-ul#nav .btn {
+.btn {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0px;
@@ -142,7 +142,7 @@ ul#nav .btn {
   text-decoration: none; 
 }
 
-ul#nav .btn:hover {
+.btn:hover {
   background: #63686b;
   text-decoration: none;
 }

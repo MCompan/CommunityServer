@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/style.css">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
+<link rel="stylesheet" type="text/css" href="style.css" />
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -76,20 +76,20 @@
 -->
 <body>
   <form method="post" class="login">
-  	<p>Registration</p>
+  	<font size="40px" color="white"><p>Registration</p></font>
     <p>
-      <label for="login">Email:</label>
+      <label id="new">Email:</label>
       <input type="text" name="userEmail" id="userEmail" value="" autofocus>
     </p>
 
     <p>
-      <label for="password">Password:</label>
+      <label id="new">Password:</label>
       <input type="password" name="userPassword" id="userPassword" value="">
     </p>
 
     <p class="login-submit">
       <button id="submit" class="login-button"></button>
     </p>
-	<button id="cancel">Cancel</button>
+	<button id="cancel" class="btn">Cancel</button>
   </form>
 </body>

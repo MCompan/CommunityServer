@@ -15,6 +15,7 @@
 				<li><label class="btn">Notice Board</label></li>
 				<li><label class="btn">Ranking</label></li>
 				<li><label class="btn">Information</label></li>
+				
     			 <!--  <li><input type="button" value="Main" class="btn"></input></li>
       			<li><input type="button" value="Notice Board" class="btn"></input></li>
      			 <li><input type="button" value="Ranking" class="btn"></input></li>
@@ -48,11 +49,11 @@
     
    <!-- 메인화면 -->
    
-   
+   <div id="wrap">
      <div id="footer">
     <div id="ftlink"> <a href="#">Home</a> | <a href="#">About Us</a> | <a href="#">Production</a> | <a href="#">Submission</a> | <a href="#">Contact</a> </div>
-    <p id="copyright">© 2008. All Rights Reserved.
-      Designed by <a href="http://www.free-css-templates.com/">Free CSS Templates</a>, Thanks to <a href="http://www.openwebdesign.org/">Web Design Firm</a></p>
+    <p id="copyright">Time To Travel</p>
+  </div>
   </div>
   <!-- /footer -->
 </body>

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/style.css">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
+<link rel="stylesheet" type="text/css" href="style.css" />
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -162,21 +162,22 @@
 
 <body>
   <form method="post"  class="login">
-  	<p>Login</p>
+  	<font size="40px" color="white">
+  	<p>Login</p></font>
     <p>
-      <label for="login">Email:</label>
+      <label id="new">Email:</label>
       <input type="text" name="userEmail" id="userEmail" value="" autofocus>
     </p>
 
     <p>
-      <label for="password">Password:</label>
+      <label id="new">Password:</label>
       <input type="password" name="userPassword" id="userPassword" value="">
     </p>
-
+<p></p>
     <p class="login-submit">
       <button id="login" class="login-button">Login</button>
     </p>
-	<button id="registration">Registration</button>
+	<button id="registration" class ="btn">Registration</button>
 	 <a align="char"/><fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> 
   </form>
 </body>

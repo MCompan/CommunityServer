@@ -6,7 +6,8 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.sql.DataSource;
+import javax.sql.DataSource; 
+
 import java.sql.Timestamp;
 
 import Global.Management;
@@ -94,6 +95,7 @@ public class BoardProcessing {
 		return count;
 	}
 	
+	@SuppressWarnings("resource")
 	public int UpdateReadCount(int num) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
