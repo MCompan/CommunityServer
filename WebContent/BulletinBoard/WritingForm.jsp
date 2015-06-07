@@ -15,7 +15,7 @@
 			};
 			$.ajax({
 				type:"post",
-				url:"Processing.jsp",
+				url:"../BulletinBoard/Processing.jsp",
 				data:query,
 				success:function(data) {
 					if(data == -3) {
@@ -29,10 +29,10 @@
 					}
 				}
 			});
-			$("#boardForm").load("ListingForm.jsp");
+			$("#meun").load("../BulletinBoard/ListingForm.jsp");
 		});
 		$("#cancel").click(function() {
-			$("#boardForm").load("ListingForm.jsp");
+			$("#meun").load("../BulletinBoard/ListingForm.jsp");
 		});
 	});
 </script>

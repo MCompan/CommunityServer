@@ -1,27 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.util.List" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Notice</title>
 <%@ page import = "java.text.SimpleDateFormat" %>
-<%@ page import = "BulletinBoard.BoardDataBean" %>
-<%@ page import = "BulletinBoard.BoardProcessing" %>
+<%@ page import = "java.util.List" %>
 <%@ page import = "Global.Management" %>
+<%@ page import = "NoticeBoard.NoticeProcessing" %>
+<%@ page import = "NoticeBoard.NoticeDataBean" %>
+<%@ page import = "java.text.SimpleDateFormat" %>
 <link rel="stylesheet" type="text/css" href="../main/css/table.css" />
-<meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0"/>
-
 <script src="../js/jquery-2.1.3.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$("#write").click(function() {
-			$("#meun").load("../BulletinBoard/WritingForm.jsp");
-		});
-	});
-</script>
 
 <%
 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-BoardProcessing manager = BoardProcessing.getInstance();
+NoticeProcessing manager = NoticeProcessing.getInstance();
 Management globalManager = Management.getInstance();
-List<BoardDataBean> list = null;
+List<NoticeDataBean> list = null;
 int pageSize = 6;
 
 String pageNum = request.getParameter("pageNum");
@@ -38,39 +35,33 @@ if(count > 0) {
 	if(list.isEmpty()) { count = 0; }
 }
 %>
-Articles, Total: <%=count %>
+<body id="noticeMain">
+<font color="gray" size="10">Notice: <%=count %></font>
 <div id="list">
 	<%if(count == 0) {%>
 		No articles
 	<%} else {%>
-	<table class="type10">
-		<thead>
-		<tr>
-			<th>No
-			<th>Subject
-			<th>Email
-			<th>Read Count
-			<th>Date</th>
-		</tr>
-		</thead>
+	<table border="2" class="type10">
+	 <thead>
+		<th>No</th>
+		<th>Subject</th>
+		<th>Date</th>
+	</thead>
 		<%
 		for(int i=0; i<list.size(); i++) {
-			BoardDataBean article = list.get(i);
+			NoticeDataBean article = list.get(i);
 			int num = article.getNum();
 			String subject = article.getSubject();
-			String user = globalManager.GetUser(article.getUserNumber());
-			int readCount = article.getReadCount();
 			String date = dateFormat.format(article.getRegistrationDate());
 	 	%>
 	 	<tr>
-	 		<td align="center"><%=num %>
-	 		<td><a href ="../BulletinBoard/ViewingForm.jsp?num=<%=num %>"><%=subject %></a>
-	 		<td><%=user %>
-	 		<td align="center"><%=readCount %>
+	 		<td align="center"><%=num %></td>
+	 		<td><a href ="../Notice/ViewNotice.jsp?num=<%=num %>"><%=subject %></a></td>
+	 		<!-- <td><button class ="btn" id="number" value="../Notice/ViewNotice.jsp?num=<%=num %>"><%=subject %></button></td> -->
 	 		<td><%=date %></td>
+	 	</tr>
 		<%} %>
 	</table>
 	<%} %>
-	
-<button id="write">글쓰기</button>
 </div>
+</body>

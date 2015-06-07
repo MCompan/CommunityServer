@@ -11,7 +11,7 @@ table.type09 thead th {
     font-weight: bold;
     vertical-align: middle;
     text-align: center;
-    color: #369;
+    color: #ffffff;
     border-bottom: 3px solid #036;
 }
 table.type09 tbody th {
@@ -27,4 +27,30 @@ table.type09 td {
     padding: 10px;
     vertical-align: middle;
     border-bottom: 0px solid #ccc;
+    color: #ffffff;
+}
+
+table.type10 {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1;
+
+}
+
+table.type10 thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+    text-align: center;
+    background: #222222;
+    color: #ffffff;
+    border-bottom: 3px solid #036;
+}
+
+table.type10 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: middle;
+    border-bottom: 0px solid #ccc;
+    color: #ffffff;
 }

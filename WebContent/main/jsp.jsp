@@ -11,11 +11,11 @@
 <script>
 $(document).ready(function() {
 	$("#mainClick").click(function(){
-		$("#mainForm").load("Main.jsp");
+		window.location.href = "jsp.jsp";
 		
 	}); 
-	$("#noticeBoardClick").click(function(){
-		$("#mainForm").load("../BulletinBoard/Main.jsp");
+	$("#BulletinBoardClick").click(function(){
+		$("#meun").load("../BulletinBoard/ListingForm.jsp");
 	}); 
 	$("#RankingClick").click(function(){
 		alert("test");
@@ -32,7 +32,7 @@ $(document).ready(function() {
 		<div id="header">
 			<ul id="nav">
 				<li><label class="btn" id="mainClick">Main</label></li>
-				<li><label class="btn" id="noticeBoardClick">Notice Board</label></li>
+				<li><label class="btn" id="BulletinBoardClick">Bulletin Board</label></li>
 				<li><label class="btn" id="RankingClick">Ranking</label></li>
 				<li><label class="btn" id="information">Information</label></li>
 				
@@ -46,20 +46,26 @@ $(document).ready(function() {
      <!-- 헤더 -->
     <div id="content">
     <div id="inner">
-      <div class="left float-l">
-        <div class="blog">
-        
-        </div>
-        <div class="blog">
-        </div>
-      </div>
       <div class="right folat-r">
         <div id="top">
           <ul id="meun">
-            <jsp:include page="Main.jsp" flush="false"/>
+            <%String id="";
+        		try{
+        			id=(String)session.getAttribute("userEmail");
+        			if(id==null||id.equals("")){        
+        		%>
+			<jsp:include page="LoginForm.jsp"></jsp:include>
+				<% }else{ %>
+			<jsp:include page="ManagementForm.jsp"></jsp:include>
+				<%} }catch(Exception e){
+				e.printStackTrace();
+				}
+				%>
+				
           </ul>
         </div>
       </div>
+      <jsp:include page="../Notice/noticeForm.jsp"></jsp:include>
     </div>
   </div>
      

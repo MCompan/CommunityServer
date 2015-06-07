@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
 
 <%@page import="java.io.Console"%>
 <%@page import="com.sun.org.apache.xml.internal.resolver.helpers.Debug"%>
@@ -42,7 +37,7 @@
 			}
 		}
 		$("#registration").click(function() {
-			$("#mainForm").load("RegistrationForm.jsp");
+			$("#meun").load("RegistrationForm.jsp");
 		});
 		$("#login").click(function() {
 			var userEmail = $("#userEmail").val();
@@ -167,19 +162,19 @@
   	<p>Login</p></font>
     <p>
       <label id="new">Email:</label>
-      <input type="text" name="userEmail" id="userEmail" value="" autofocus>
+      <input type="text" name="userEmail" id="userEmail" autofocus>
     </p>
 
     <p>
       <label id="new">Password:</label>
-      <input type="password" name="userPassword" id="userPassword" value="">
+      <input type="password" name="userPassword" id="userPassword">
     </p>
 <p></p>
     <p class="login-submit">
       <button id="login" class="login-button">Login</button>
     </p>
 	<button id="registration" class ="btn">Registration</button>
-	 <a align="char"/><fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> 
+	 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> 
   </form>
 </body>
 </html>

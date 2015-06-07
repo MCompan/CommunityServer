@@ -4,6 +4,7 @@
 <%@ page import = "BulletinBoard.BoardProcessing" %>
 <%@ page import = "Global.Management"%>
 <%@ page import = "java.util.List" %>
+
 <% request.setCharacterEncoding("utf-8"); %>
 
 <jsp:useBean id="data" class="BulletinBoard.BoardDataBean">
@@ -30,7 +31,7 @@
 		data.setUserNumber(globalManager.GetUser(userEmail));
 		
 		state = manager.Write(data, 1);
-		out.println(state);
+		out.println(state); 
 	} else if(type.equals("modify")) {
 		int state = -1;
 		

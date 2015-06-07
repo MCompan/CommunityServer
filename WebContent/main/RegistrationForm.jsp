@@ -52,7 +52,7 @@
 			 });
 		});
 		$("#cancel").click(function() {
-			window.location.href = "Main.jsp";
+			window.location.href = "jsp.jsp";
 		});
 	});
 </script>

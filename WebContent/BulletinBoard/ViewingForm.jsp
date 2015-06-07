@@ -18,7 +18,7 @@
 			};
 			$.ajax({
 				type:"post",
-				url:"Processing.jsp",
+				url:"../BulletinBoard/Processing.jsp",
 				data:query,
 				success:function(data){
 					if(data == -1) {
@@ -58,7 +58,7 @@
 <%
 BoardProcessing manager = BoardProcessing.getInstance();
 Management globalManager = Management.getInstance();
-SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm"); 
 
 BoardDataBean article = manager.GetWriting(Integer.parseInt(request.getParameter("num")), true);
 

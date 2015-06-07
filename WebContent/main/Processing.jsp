@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ page import = "MemberManagement.MemberManagementProcessing" %>
-
+<%@ page import = "Global.Management" %>
 <% request.setCharacterEncoding("utf-8");%>
 
 <jsp:useBean id="member" class="MemberManagement.MemberDataBean">
@@ -42,6 +42,8 @@
 				state = -4; //Wrong Email
 		}
 		if(state > 0) {
+			Management globalManager = Management.getInstance();
+			session.setAttribute("userNumber", globalManager.GetUser(request.getParameter("userEmail")));
 			session.setAttribute("userEmail", request.getParameter("userEmail"));
 			
 			Cookie emailCookie = new Cookie("userEmail", request.getParameter("userEmail"));
