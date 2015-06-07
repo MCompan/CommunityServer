@@ -1,7 +1,17 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0"/>
 
+<link rel="stylesheet" href="css/style.css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="style.css" />
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -45,7 +55,7 @@
 		});
 	});
 </script>
-	
+<!-- 
 <table border="2" style="font-size: large; border-color: blue; border-collapse: collapse;" >
 	<tr>
 		<td colspan="2" align="center">Registration
@@ -63,3 +73,23 @@
 		<td><button id="cancel">취소</button>
 	</tr>
 </table>
+-->
+<body>
+  <form method="post" class="login">
+  	<font size="40px" color="white"><p>Registration</p></font>
+    <p>
+      <label id="new">Email:</label>
+      <input type="text" name="userEmail" id="userEmail" value="" autofocus>
+    </p>
+
+    <p>
+      <label id="new">Password:</label>
+      <input type="password" name="userPassword" id="userPassword" value="">
+    </p>
+
+    <p class="login-submit">
+      <button id="submit" class="login-button"></button>
+    </p>
+	<button id="cancel" class="btn">Cancel</button>
+  </form>
+</body>
