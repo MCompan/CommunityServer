@@ -16,6 +16,4 @@ build
 .classpath
 .project
 
-*.sql
-
 *~
