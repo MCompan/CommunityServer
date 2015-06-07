@@ -16,7 +16,6 @@ public class BoardProcessing {
 		return instance;
 	}
 
-
 	//type:1 = new, type:2 = update
 	public int Write(BoardDataBean data, int type) {
 		Connection connection = null;

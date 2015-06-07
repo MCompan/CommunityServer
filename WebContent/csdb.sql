@@ -61,6 +61,7 @@ create table Ghost (
 insert into Users values (0, 'initID', 'initEmail', 'initPassword');
 insert into Stages values (1),(2),(3),(4),(5);
 insert into Ranking values (1, 1, 203450),(1, 2, 245671),(1, 3, 178450),(1, 4, 343321),(2, 1, 245668),(2, 2, 313485),(2, 3, 146323);
+insert into NoticeBoard value (1, '공지사항 테스트', '2015-06-07 16:28:30.0', '야호!');
 
 ----Ranking----
 --add
