@@ -4,10 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource; 
-
 import java.sql.Timestamp;
 
 import Global.Management;
@@ -19,7 +15,6 @@ public class BoardProcessing {
 	public static BoardProcessing getInstance() {
 		return instance;
 	}
-
 
 	//type:1 = new, type:2 = update
 	public int Write(BoardDataBean data, int type) {
@@ -94,49 +89,7 @@ public class BoardProcessing {
 		
 		return count;
 	}
-	
-	@SuppressWarnings("resource")
-	public int UpdateReadCount(int num) {
-		Connection connection = null;
-		PreparedStatement pStatement = null;
-		ResultSet resultSet = null;
-		int state = -1;
-		int readCount = 0;
-		
-		try{
-			connection = globalManager.getConnection();
-			
-			pStatement = connection.prepareStatement(
-					"select readCount " +
-					"from BulletinBoard " +
-					"where num = ?");
-			pStatement.setInt(1, num);
-			resultSet = pStatement.executeQuery();
-			
-			if(resultSet.next()) {
-				readCount = resultSet.getInt("readCount");
-				readCount++;
-			}
-			
-			pStatement = connection.prepareStatement(
-					"update BulletinBoard " +
-					"set readCount = ? " +
-					"where num = ?");
-			pStatement.setInt(1, readCount);
-			pStatement.setInt(2, num);
-			pStatement.executeUpdate();
-			state = 1;
-		} catch(Exception e) { 
-			e.printStackTrace(); 
-		} finally {
-			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
-			if (pStatement != null) try { pStatement.close(); } catch(SQLException ex) {}
-			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
-		}
-		
-		return state;
-	}
-	
+
 	public List<BoardDataBean> GetList(int start, int end) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
@@ -177,18 +130,20 @@ public class BoardProcessing {
 		return list;
 	}
 	
-	public BoardDataBean GetWriting(int num) {
+	public BoardDataBean GetWriting(int num, boolean onView) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		ResultSet resultSet = null;
+		int readCount = 0;
 		BoardDataBean writing = new BoardDataBean();
 		
 		try{
 			connection = globalManager.getConnection();
+
 			pStatement = connection.prepareStatement(
 					"select * " + 
 					"from BulletinBoard " +
-					"where num = ?");
+					"where num = ?;");
 			pStatement.setInt(1, num);
 			resultSet = pStatement.executeQuery();
 			if(resultSet.next()) {
@@ -196,8 +151,24 @@ public class BoardProcessing {
 					writing.setUserNumber(resultSet.getInt("userNumber"));
 					writing.setSubject(resultSet.getString("subject"));
 					writing.setRegistrationDate(resultSet.getTimestamp("registrationDate"));
-					writing.setReadCount(resultSet.getInt("readCount"));
+					readCount = resultSet.getInt("readCount");
+					if(onView) {
+						readCount += 1;
+					}
+					writing.setReadCount(readCount);
 					writing.setContent(resultSet.getString("content"));
+			}
+
+			if (pStatement != null) try { pStatement.close(); } catch(SQLException ex) {}
+			
+			if(onView) {
+				pStatement = connection.prepareStatement(
+						"update BulletinBoard " +
+						"set readCount = ? " +
+						"where num = ?;");
+				pStatement.setInt(1, readCount);
+				pStatement.setInt(2, num);
+				pStatement.executeUpdate();
 			}
 		} catch(Exception e) { 
 			e.printStackTrace(); 

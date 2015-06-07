@@ -1,13 +1,10 @@
 package Global;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import BulletinBoard.BoardDataBean;
 
 public class Management {
 	private static Management instance = new Management();

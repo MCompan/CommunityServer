@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="css/style.css">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="css/styleMain.css" />
+
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 	$(document).ready(function() {

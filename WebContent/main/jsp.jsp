@@ -4,18 +4,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <title>title</title>
-<link rel="stylesheet" type="text/css" href="reset.css" />
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/styleMain.css" />
 
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 $(document).ready(function() {
 	$("#mainClick").click(function(){
-		alert("test");
+		$("#mainForm").load("Main.jsp");
 		
 	}); 
 	$("#noticeBoardClick").click(function(){
-		alert("test");
+		$("#mainForm").load("../BulletinBoard/Main.jsp");
 	}); 
 	$("#RankingClick").click(function(){
 		alert("test");
@@ -51,7 +51,6 @@ $(document).ready(function() {
         
         </div>
         <div class="blog">
-        
         </div>
       </div>
       <div class="right folat-r">

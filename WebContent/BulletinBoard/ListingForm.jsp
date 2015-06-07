@@ -11,7 +11,7 @@
 <script>
 	$(document).ready(function() {
 		$("#write").click(function() {
-			$("#boardForm").load("WritingForm.jsp");
+			$("#boardForm").load("../BulletinBoard/WritingForm.jsp");
 		});
 	});
 </script>

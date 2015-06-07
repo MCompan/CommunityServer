@@ -7,10 +7,21 @@
 	<title> TITLE </title>
 </head>
 <body>
-
 	<div id="mainForm">
-	<jsp:include page="LoginForm.jsp"></jsp:include>
+	        <%String id="";
+        	try{
+        	id=(String)session.getAttribute("userEmail");
+        	if(id==null||id.equals("")){        
+        	%>
+		<jsp:include page="LoginForm.jsp"></jsp:include>
+	<% }else{ %>
+		<jsp:include page="ManagementForm.jsp"></jsp:include>
+	<%} }catch(Exception e){
+		e.printStackTrace();
+	}
+	%>
 	</div>
+	
 	result:
 	<div id="result" ></div>
 </body>

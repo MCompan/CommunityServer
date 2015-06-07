@@ -2,56 +2,18 @@ package MemberManagement;
 
 import java.sql.*;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-
+import Global.Management;
 import work.crypt.SHA256;
 import work.crypt.BCrypt;
 
 public class MemberManagementProcessing {
     private static MemberManagementProcessing instance = new MemberManagementProcessing();
+	private Management globalManager = Management.getInstance();
     
     public static MemberManagementProcessing getInstance() {
         return instance;
     }
     
-    private MemberManagementProcessing() {}
-    
-    //커넥션 풀에서 커넥션 객체를 얻어내는 메소드
-    private Connection getConnection() throws Exception {
-        Context initCtx = new InitialContext();
-        Context envCtx = (Context) initCtx.lookup("java:comp/env");
-        DataSource ds = (DataSource)envCtx.lookup("jdbc/CommunityServerDatabase");
-    	
-        return ds.getConnection();
-    }
-    
-    public String ViewQuery() {
-		Connection connection = null;
-        PreparedStatement pStatement = null;
-		ResultSet resultSet= null;
-		String result = "::\n";
-		
-		try{
-			connection = getConnection();
-        	pStatement = connection.prepareStatement(
-                	"select * "
-                	+ "from Users");
-          resultSet = pStatement.executeQuery();
-          while(resultSet.next()) {
-        	  result += resultSet.getString("userEmail");
-          }
-          
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
-            if (pStatement != null) try { pStatement.close(); } catch(SQLException ex) {}
-            if (connection != null) try { connection.close(); } catch(SQLException ex) {}
-        }
-		return result;
-    }
 
     public int Login(MemberDataBean member) {
 		Connection connection = null;
@@ -61,7 +23,7 @@ public class MemberManagementProcessing {
 		int state = -1;
 		
 		try{
-			connection = getConnection();
+			connection = globalManager.getConnection();
             String orgPass = member.getUserPassword();
             String shaPass = sha.getSha256(orgPass.getBytes());
         	
@@ -103,7 +65,7 @@ public class MemberManagementProcessing {
 		}
 		
 		try{
-			connection = getConnection();
+			connection = globalManager.getConnection();
 			
 			nextUserNumber = GetNextUserNumber();
 			if(nextUserNumber < 0) { 
@@ -145,7 +107,7 @@ public class MemberManagementProcessing {
 		}
     	
     	try{
-			connection = getConnection();
+			connection = globalManager.getConnection();
 			
 			pStatement = connection.prepareStatement(
 					"update Users "
@@ -170,7 +132,7 @@ public class MemberManagementProcessing {
     	int state = -1;
     	
     	try{
-			connection = getConnection();
+			connection = globalManager.getConnection();
 			
 			pStatement = connection.prepareStatement(
 					"delete "
@@ -195,7 +157,7 @@ public class MemberManagementProcessing {
     	boolean isValid = false;
     	
 		try{
-			connection = getConnection();
+			connection = globalManager.getConnection();
 			pStatement = connection.prepareStatement(
 					"select userNumber "
 					+ "from Users "
@@ -226,7 +188,7 @@ public class MemberManagementProcessing {
     	int state = -1;
     	
 		try{
-			connection = getConnection();
+			connection = globalManager.getConnection();
 			pStatement = connection.prepareStatement(
 					"select userID "
 					+ "from Users "
@@ -261,7 +223,7 @@ public class MemberManagementProcessing {
         int nextUserNumber = -1;
         
 		try{
-			connection = getConnection();
+			connection = globalManager.getConnection();
 			
 			nextUserNumber = GetNextUserNumber();
 			if(nextUserNumber < 0) { 
@@ -296,7 +258,7 @@ public class MemberManagementProcessing {
     	int nextUserNumber = -1;
     	
     	try{
-			connection = getConnection();
+			connection = globalManager.getConnection();
 			pStatement = connection.prepareStatement(
 					"select MAX(userNumber) AS nextUserID "
 					+ "from Users");

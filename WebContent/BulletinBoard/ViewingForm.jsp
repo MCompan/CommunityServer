@@ -9,18 +9,6 @@
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 	$(document).ready(function() {
-		var num = $("#num").text();
-		var query = {
-			type:"view",
-			num:num
-		};
-		$.ajax({
-			type:"post",
-			url:"Processing.jsp",
-			data:query,
-			success:function(data){
-			}
-		});
 		$("#modify").click(function() {
 			query = {
 				type:"modify",
@@ -72,7 +60,8 @@ BoardProcessing manager = BoardProcessing.getInstance();
 Management globalManager = Management.getInstance();
 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-BoardDataBean article = manager.GetWriting(Integer.parseInt(request.getParameter("num")));
+BoardDataBean article = manager.GetWriting(Integer.parseInt(request.getParameter("num")), true);
+
 int num = article.getNum();
 String subject = article.getSubject();
 String email = globalManager.GetUser(article.getUserNumber());

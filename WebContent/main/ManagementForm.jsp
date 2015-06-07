@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0"/>
-
+<link rel="stylesheet" type="text/css" href="css/table.css" />
+<link rel="stylesheet" type="text/css" href="css/styleMain.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$("#Logout").click(function() {			
+		$("#Logout").click(function() {
 			var query = {
 				type:"logout",}
 			$.ajax({
@@ -23,7 +25,7 @@
 					}
 				}
 			 });
-			window.location.href = "Main.jsp";
+			window.location.href = "jsp.jsp";
 		});
 
 		$("#ChangeEmail").click(function() {
@@ -69,7 +71,7 @@
 					if(data == 1) {
 						//Success Withdrawal
 						$("#result").text("Success Withdrawal");
-						window.location.href = "Main.jsp";
+						window.location.href = "jsp.jsp";
 					} else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");
@@ -82,8 +84,27 @@
 		});
 	});
 </script>
-
+<% String email = (String)session.getAttribute("userEmail"); %>
+<table class="type09">
+ <thead>
+    <tr>
+        <th colspan="2"><font size="34"><%=email %>님 어서오세요</font></th>
+    </tr>
+ </thead>
+ 
+    <tr>
+    	<td><input type="text" id="newEmail"></td>
+        <td><button id="ChangeEmail" class="btn" class="btn"><font size="6">변경</font></button></td>
+    </tr>
+    <tr>
+		<td><label id="Logout" class="btn">로그아웃</label></td>
+        <td><label id="Withdrawal" class="btn">계정삭제</label></td>
+    </tr>
+    </tbody>
+</table>   
+<!-- 
 <table border="2" style="font-size: large; border-color: blue; border-collapse: collapse;">
+
 	<tr>
 		<td colspan="3" align="center">Management
 	</tr>
@@ -97,4 +118,4 @@
 	<tr align="center">
 		<td colspan="2"><button id="Withdrawal">계정 삭제</button>
 	</tr>
-</table>
+</table> -->

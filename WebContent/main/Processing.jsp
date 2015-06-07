@@ -78,6 +78,7 @@
 			return;
 		}
 		state = manager.Withdrawal(member);
+		session.invalidate();
 		
 		out.println(state);
 	} else if(type.equals("logout")) {
