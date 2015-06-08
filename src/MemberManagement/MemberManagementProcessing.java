@@ -59,7 +59,7 @@ public class MemberManagementProcessing {
 		int nextUserNumber = -1;
 		int state = -1;
 		
-		if(!CheckInvalidEmail(member)) { 
+		if(CheckInvalidEmail(member)) { 
 			state = -2;	//Overlap Email
 			return state; 
 		}
@@ -154,7 +154,7 @@ public class MemberManagementProcessing {
 		Connection connection = null;
         PreparedStatement pStatement = null;
         ResultSet resultSet = null;
-    	boolean isValid = false;
+    	boolean isOverlapped = true;
     	
 		try{
 			connection = globalManager.getConnection();
@@ -164,12 +164,10 @@ public class MemberManagementProcessing {
 					+ "where userEmail = ?");
 			pStatement.setString(1, member.getUserEmail());
 			resultSet = pStatement.executeQuery();
-			isValid = true;
 			if(resultSet.next()) {
-				isValid = false; //Overlap Email
-			}
-			else {
-				isValid = true; //No overlap Email
+				isOverlapped = true; //Overlap Email
+			} else {
+				isOverlapped = false; //No overlap Email
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -178,7 +176,7 @@ public class MemberManagementProcessing {
             if (pStatement != null) try { pStatement.close(); } catch(SQLException ex) {}
             if (connection != null) try { connection.close(); } catch(SQLException ex) {}
 		}
-    	return isValid;
+    	return isOverlapped;
     }
 
     public int LoginWithFacebook(MemberDataBean member) {

@@ -47,8 +47,8 @@
 				success:function(data){
 					if(data == 1) {
 						//Success Change
-						$("#result").text("Success Change Email");
 						window.location.href = "jsp.jsp";
+						$("#result").text("Success Change Email");
 					} else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");

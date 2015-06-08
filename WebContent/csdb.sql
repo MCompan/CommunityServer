@@ -2,6 +2,7 @@ select * from Users;
 select * from Friends;
 select * from NoticeBoard;
 select * from BulletinBoard;
+select * from Comments;
 select * from Stages;
 select * from Ranking;
 select * from Ghost;
@@ -37,6 +38,15 @@ create table BulletinBoard (
 	content Text not null,
 	primary key (num, userNumber),
 	foreign key (userNumber) references Users(userNumber) ON DELETE cascade ON UPDATE cascade
+);
+create table Comments (
+	num int primary key not null,
+	userNumber int not null,
+	articleNumber int not null,
+	registrationDate Timestamp not null,
+	content Text not null,
+	foreign key (userNumber) references Users(userNumber) ON DELETE cascade ON UPDATE cascade,
+	foreign key (articleNumber) references BulletinBoard(num) ON DELETE cascade ON UPDATE cascade
 );
 create table Stages (
 	stage smallint primary key not null

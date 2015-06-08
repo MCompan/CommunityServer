@@ -135,26 +135,6 @@
 		}
 	}
 </script>
-<!-- 
-<table border="2" style="font-size: large; border-color: blue; border-collapse: collapse;">
-	<tr>
-		<td colspan="3" align="center">Login
-	</tr>
-	<tr>
-		<td align="right">Email
-		<td colspan="2"><input type="text" id="userEmail" name="userEmail" value="" autofocus>
-	</tr>
-	<tr align="right">
-		<td>Password
-		<td colspan="2"><input type="password" id="userPassword" name="userPassword" value="">
-	</tr>
-	<tr align="center">
-		<td><button id="registration">회원가입</button>
-		<td align="char"><fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-		<td><button id="login">로그인</button>
-	</tr>
-</table>
- -->
 
 <body>
   <form method="post"  class="login">

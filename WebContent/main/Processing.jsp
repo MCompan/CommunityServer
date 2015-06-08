@@ -67,6 +67,7 @@
 			return;
 		}
 		state = manager.ChangeEmail(member, newEmail);
+		session.invalidate();
 		
 		out.println(state);
 	} else if(type.equals("withdrawal")) {

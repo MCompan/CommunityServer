@@ -96,7 +96,7 @@ public class RankingProcessing {
 		return ranking;
 	}
 	
-	public int AddRanking(RankingDataBean data) {
+	int AddRanking(RankingDataBean data) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		int state = -1;
@@ -120,7 +120,7 @@ public class RankingProcessing {
 		}
 		return state;
 	}	
-	public int UpdateRanking(RankingDataBean data) {
+	int UpdateRanking(RankingDataBean data) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		int state = -1;
@@ -145,7 +145,7 @@ public class RankingProcessing {
 		}
 		return state;
 	}
-	public boolean isInData (RankingDataBean data) {
+	boolean isInData (RankingDataBean data) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		ResultSet resultSet= null;
