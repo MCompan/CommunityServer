@@ -42,6 +42,7 @@
 		}
 		$("#registration").click(function() {
 			$("#mainForm").load("RegistrationForm.jsp");
+			//window.location.href = "RegistrationForm.jsp"
 		});
 		$("#login").click(function() {
 			var userEmail = $("#userEmail").val();
