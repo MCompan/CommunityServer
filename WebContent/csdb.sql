@@ -84,7 +84,7 @@ select * from Ghost where userNumber=1;
 
 ----Ranking----
 --add
-insert into Ranking values (1, 1, 203450);
+insert into Ranking values (1, 5, 203450);
 --update
 update Ranking set recording = 203455 where userNumber = 1 and stage = 1;
 --check
