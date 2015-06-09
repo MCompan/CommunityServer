@@ -33,7 +33,6 @@
 					$("#result").text(data);
 					if(data == 1) {
 						//Success Registration
-						$("#result").text("Success Registration");
 						window.location.href = "Main.jsp";
 					}
 					else if(data == -1) {
@@ -46,6 +45,10 @@
 					}
 					else if(data == -3) {
 						//Wrong Access
+						$("#result").text("Wrong Access");
+					}
+					else if(data == -4) {
+						//null ID
 						$("#result").text("Wrong Access");
 					}
 				}

@@ -4,8 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <title>title</title>
-<link rel="stylesheet" type="text/css" href="css/reset.css" />
-<link rel="stylesheet" type="text/css" href="css/styleMain.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css" />
 
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
@@ -18,31 +17,38 @@ $(document).ready(function() {
 		$("#meun").load("../BulletinBoard/ListingForm.jsp");
 	}); 
 	$("#RankingClick").click(function(){
+<<<<<<< HEAD
 		$("#meun").load("../ranking/rankingListing.jsp");
 	});
 	$("#information").click(function(){
 		alert("test");
+=======
+		alert("test");
+	}); 
+	$("#ghost").click(function(){
+		$("#meun").load("../Ghost/GhostForm.jsp");
+>>>>>>> 1e7611e1c40eae9c0717b6e41cb451b1acc96fd8
 	}); 
 });
 </script>
 </head>
 
 	<body>
-	<div id="wrap">
-		<div id="header">
-			<ul id="nav">
-				<li><label class="btn" id="mainClick">Main</label></li>
-				<li><label class="btn" id="BulletinBoardClick">Bulletin Board</label></li>
-				<li><label class="btn" id="RankingClick">Ranking</label></li>
-				<li><label class="btn" id="information">Information</label></li>
-				
-    			 <!-- <li><input type="button" id="mainClick" value="Main" class="btn"></input></li>
-      			<li><input type="button" value="Notice Board" class="btn"></input></li>
-     			 <li><input type="button" value="Ranking" class="btn"></input></li>
-      			<li><input type="button" value="My Information" class="btn"></input></li>  -->
-    		</ul>
-     	</div>
-     </div>
+	<div id="main_all">
+	<div id="header">
+		<div id="wrap">
+			<div id="menu_wrapper">
+				<ul id="nav">
+					<li><label id="mainClick">Main</label></li>
+					<li><label id="NoticeBoardClick">Notice Board</label></li>
+					<li><label id="BulletinBoardClick">Bulletin Board</label></li>
+					<li><label id="RankingClick">Ranking</label></li>
+					<li><label id="ghost">Ghost</label></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+ 	<br></br>
      <!-- 헤더 -->
     <div id="content">
     <div id="inner">
@@ -77,6 +83,8 @@ $(document).ready(function() {
           </ul>
         </div>
       </div>
+   <br></br>
+   <hr></hr>
       <jsp:include page="../Notice/noticeForm.jsp"></jsp:include>
     </div>
   </div>
@@ -85,7 +93,8 @@ $(document).ready(function() {
     
     
    <!-- 메인화면 -->
-   
+   <br></br>
+   <hr></hr>
    <div id="wrap">
      <div id="footer">
     <div id="ftlink"> <a href="#">Home</a> | <a href="#">About Us</a> | <a href="#">Production</a> | <a href="#">Submission</a> | <a href="#">Contact</a> </div>
@@ -93,4 +102,5 @@ $(document).ready(function() {
   </div>
   </div>
   <!-- /footer -->
+  </div>
 </body>
