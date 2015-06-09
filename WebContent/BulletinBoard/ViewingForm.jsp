@@ -91,7 +91,7 @@ try{
 		<td colspan="3">
 			<textarea id="content" <%if(!isWriter) {%>readonly="readonly"<%} %> rows="10" cols="50"><%=content %></textarea>
 	<tr>
-		<td><%if(isWriter) {%><button id="modify">수정</button> <%} %>
-		<td><%if(isWriter) {%><button id="delete">삭제</button> <%} %>
+		<td><button id="modify" <%if(!isWriter) {%> disabled="disabled" <%} %>>수정</button> 
+		<td><button id="delete" <%if(!isWriter) {%> disabled="disabled" <%} %>>삭제</button>
 		<td><button id="back">뒤로</button>
 </table>

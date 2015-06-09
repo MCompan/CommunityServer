@@ -34,48 +34,19 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
   color: #029f5b;
   font-size: 18px;
 }
-.social-login{
+.ranking-table {
+  margin-bottom: 10px;
+}
+.account-table {
+	
+}
+.u-form-group, .u-form-group2, .u-form-group3{
   position:relative;
-  float: left;
-  width: 100%;
-  height:auto;
-  padding: 10px 0 15px 0;
-}
-.social-login a{
-  position:relative;
-  float: left;
-  width:calc(40% - 8px);
-  text-decoration: none;
-  color: #fff;
-  border: 1px solid rgba(0,0,0,0.05);
-  padding: 12px;
-  border-radius: 2px;
-  font-size: 12px;
-  text-transform: uppercase;
-  margin: 0 3%;
-  text-align:center;
-}
-.social-login a:first-child{
-  background-color: #FF828B;
-}
-.social-login a:last-child{
-  background-color: #49639F;
-}
-.email-login,.email-signup{
-  position:relative;
-  float: left;
-  width: 100%;
-  height:auto;
-  margin-top: 20px;
-  text-align:center;
-}
-.u-form-group{
+  float:left;
   width:100%;
   margin-bottom: 10px;
 }
-.u-form-group input[type="email"],
-.u-form-group input[type="text"],
-.u-form-group input[type="password"]{
+.u-form-group input[type="text"]{
   width: calc(50% - 22px);
   height:45px;
   outline: none;
@@ -103,6 +74,39 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
   border-radius: 2px;
   text-transform: uppercase;
 }
+.u-form-group button:HOVER{
+	cursor: pointer;
+}
+.u-form-group2 button{
+  width:100%;
+  background-color: #FF828B;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 14px 0;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.u-form-group2 button:HOVER{
+	cursor: pointer;
+}
+.u-form-group3 button{
+  width:50%;
+  background-color: #FF828B;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 14px 0;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.u-form-group3 button:HOVER{
+	cursor: pointer;
+}
 .forgot-password{
   width:50%;
   text-align: left;
@@ -110,3 +114,4 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
   color: #888;
   font-size: 0.75rem;
 }
+

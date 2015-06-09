@@ -9,6 +9,8 @@ select * from Ghost;
 show tables;
 
 delete from Friends;
+delete from Ranking;
+delete from Ghost;
 
 create table Users (
 	userNumber int primary key not null,
@@ -70,7 +72,7 @@ create table Ghost (
 );
 insert into Users values (0, 'initID', 'initEmail', 'initPassword');
 insert into Stages values (1),(2),(3),(4),(5);
-insert into Ranking values (1, 1, 203450),(1, 2, 245671),(1, 3, 178450),(1, 4, 343321),(2, 1, 245668),(2, 2, 313485),(2, 3, 146323);
+insert into Ranking values (3, 1, 203450),(3, 2, 245671),(3, 3, 178450),(3, 4, 343321),(2, 1, 245668),(2, 2, 313485),(2, 3, 146323);
 insert into Ghost values (1, 2, '2015-06-06 15:24:37.0', '/ghost/1-1.txt'),
 							(1, 2, '2015-06-07 18:25:30.0', '/ghost/1-2.txt'),
 							(2, 1, '2015-06-07 18:25:30.0', '/ghost/2-1.txt');

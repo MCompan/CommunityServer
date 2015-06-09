@@ -41,7 +41,7 @@
 		else if(request.getParameter("userEmail").equals("null")) {
 				state = -4; //Wrong Email
 		}
-		if(state > 0) {
+		if(state == 1) {
 			Management globalManager = Management.getInstance();
 			session.setAttribute("userNumber", globalManager.GetUser(request.getParameter("userEmail")));
 			session.setAttribute("userEmail", request.getParameter("userEmail"));

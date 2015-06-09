@@ -60,7 +60,7 @@
 				success:function(data){
 					if(data == 2) {
 						$("#result").text("Success Login by Admin");
-						window.location = "Main.jsp"
+						window.location = "AdminForm.jsp"
 					}else if(data == 1) {
 						//Success Login
 						window.location = "Main.jsp"
@@ -203,7 +203,7 @@
     </div>
     <form class="email-login">
       <div class="u-form-group">
-        <input type="text" id="userEmail"  placeholder="Email"/>
+        <input type="text" id="userEmail"  placeholder="Email" autofocus="autofocus"/>
       </div>
       <div class="u-form-group">
         <input type="password" id="userPassword" placeholder="Password"/>

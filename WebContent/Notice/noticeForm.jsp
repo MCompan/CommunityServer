@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
+<link rel="stylesheet" type="text/css" href="../Main/css/table.css" />
+
 <title>Notice</title>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import = "java.util.List" %>
@@ -36,8 +39,10 @@ if(count > 0) {
 }
 %>
 <body id="noticeMain">
-<font color="gray" size="10">Notice: <%=count %></font>
-<div id="list">
+<font color="gray" size="10">Total Notices: <%=count %></font>
+<br>
+<br>
+<div id="list" align="center">
 	<%if(count == 0) {%>
 		No articles
 	<%} else {%>
@@ -56,7 +61,7 @@ if(count > 0) {
 	 	%>
 	 	<tr>
 	 		<td align="center"><%=num %></td>
-	 		<td><a href ="../Notice/ViewNotice.jsp?num=<%=num %>"><%=subject %></a></td>
+	 		<td><a href ="../Main/Main.jsp?type=notice&num=<%=num %>"><%=subject %></a></td>
 	 		<!-- <td><button class ="btn" id="number" value="../Notice/ViewNotice.jsp?num=<%=num %>"><%=subject %></button></td> -->
 	 		<td><%=date %></td>
 	 	</tr>

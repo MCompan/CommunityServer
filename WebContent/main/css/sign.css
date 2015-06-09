@@ -103,6 +103,9 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
   border-radius: 2px;
   text-transform: uppercase;
 }
+.u-form-group button:HOVER{
+	cursor: pointer;
+}
 .forgot-password{
   width:50%;
   text-align: left;

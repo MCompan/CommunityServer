@@ -22,7 +22,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 BoardProcessing manager = BoardProcessing.getInstance();
 Management globalManager = Management.getInstance();
 List<BoardDataBean> list = null;
-int pageSize = 6;
+int pageSize = 50;
 
 String pageNum = request.getParameter("pageNum");
 if(pageNum == null) { pageNum = "1"; }
@@ -38,8 +38,10 @@ if(count > 0) {
 	if(list.isEmpty()) { count = 0; }
 }
 %>
-Articles, Total: <%=count %>
-<div id="list">
+<font color="gray" size="8">Total Articles: <%=count %></font>
+<br>
+<br>
+<div id="list" align="center">
 	<%if(count == 0) {%>
 		No articles
 	<%} else {%>
@@ -72,6 +74,6 @@ Articles, Total: <%=count %>
 		<%} %>
 	</table>
 	<%} %>
-	
-<button id="write">글쓰기</button>
 </div>
+<br>
+<button id="write" <%if(session.getAttribute("userNumber")==null) {%> disabled="disabled" <%} %> >글쓰기</button>

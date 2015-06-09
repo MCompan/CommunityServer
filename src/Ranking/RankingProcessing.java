@@ -79,11 +79,7 @@ public class RankingProcessing {
 												"from Users " +
 												"where Users.userEmail = ?) " +
 					"order by stage asc");
-<<<<<<< HEAD
-			pStatement.setString(1,userEmail);
-=======
 			pStatement.setString(1, userEmail);
->>>>>>> 1e7611e1c40eae9c0717b6e41cb451b1acc96fd8
 			resultSet = pStatement.executeQuery();
 			if(resultSet.next()) {
 				ranking = new ArrayList<RankingDataBean>();

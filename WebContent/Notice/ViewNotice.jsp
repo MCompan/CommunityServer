@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
 <title>Notice</title>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import = "java.util.List" %>

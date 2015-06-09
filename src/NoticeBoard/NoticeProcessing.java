@@ -14,6 +14,64 @@ public class NoticeProcessing {
 		return instance;
 	}
 	
+	public int Writing(NoticeDataBean data) {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		int nextWritingNumber = -1;
+		int state = -1;
+		
+		try{
+			nextWritingNumber = GetNextWritingNumber();
+			if(nextWritingNumber < 0) { 
+				state = -2;	//Wrong Access
+				return state;
+			}
+			
+			connection = globalManager.getConnection();
+			pStatement = connection.prepareStatement(
+					"insert into NoticeBoard " +
+					"value (?, ?, ?, ?)"
+					);
+			pStatement.setInt(1, nextWritingNumber);
+			pStatement.setString(2, data.getSubject());
+			pStatement.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+			pStatement.setString(4, data.getContent());
+			pStatement.executeUpdate();
+			
+			state = 1;
+		} catch(Exception e) { 
+			e.printStackTrace(); 
+		} finally {
+			if (pStatement != null) try { pStatement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+		
+		return state;
+	}
+	
+	public int DeleteWriting(int num) {		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		int state = -1;
+		
+		try{
+			connection = globalManager.getConnection();
+			pStatement = connection.prepareStatement(
+					"delete " + 
+					"from NoticeBoard " +
+					"where num = ?");
+			pStatement.setInt(1, num);
+			pStatement.executeUpdate();
+			state = 1;
+		} catch(Exception e) { 
+			e.printStackTrace(); 
+		} finally {
+			if (pStatement != null) try { pStatement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+		return state;
+	}
+	
 	public int GetWritingCount() {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
@@ -107,5 +165,32 @@ public class NoticeProcessing {
 		}
 		return writing;
 	}
-
+	
+	int GetNextWritingNumber() {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		int nextWritingNumber = -1;
+		
+		try{
+			connection = globalManager.getConnection();
+			pStatement = connection.prepareStatement(
+					"select MAX(num) AS nextWritingNumber " + 
+					"from NoticeBoard");
+			resultSet = pStatement.executeQuery();
+			nextWritingNumber = 0;
+			if(resultSet.next()) {
+				nextWritingNumber = resultSet.getInt("nextWritingNumber");
+				nextWritingNumber++;
+			}
+		} catch(Exception e) { 
+			e.printStackTrace(); 
+		} finally {
+			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+			if (pStatement != null) try { pStatement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+		
+		return nextWritingNumber;
+	}
 }

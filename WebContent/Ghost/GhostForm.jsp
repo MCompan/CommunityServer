@@ -9,7 +9,7 @@
 <ul>
 	<li>
 		<label>Stage: </label>
-		<select name="stage">
+		<select name="stage" <%if(session.getAttribute("userNumber")==null) {%> disabled="disabled" <%} %>>
     		<option value="" selected="selected">Stages</option>
     		<option value="1">1</option>
     		<option value="2">2</option>
@@ -19,9 +19,9 @@
 		</select>
 	<li>
 		<label>Ghost: </label>
-		<input type="file" id="file" name="file">
+		<input type="file" id="file" name="file" <%if(session.getAttribute("userNumber")==null) {%> disabled="disabled" <%} %>>
 	<li>
-		<input type="submit" id="up" value="Upload">
+		<input type="submit" id="up" value="Upload" <%if(session.getAttribute("userNumber")==null) {%> disabled="disabled" <%} %>>
 </ul>
 </form>
 <div id="result"></div>

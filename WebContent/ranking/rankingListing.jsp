@@ -8,6 +8,8 @@
 <%@ page import = "Global.Management" %>
 <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0"/>
 
+<link rel="stylesheet" type="text/css" href="../Main/css/table.css" />
+
 <% request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="data" class="Ranking.RankingDataBean">
    <jsp:setProperty name="data" property="*" />
@@ -27,9 +29,9 @@
          $.ajax({
          type : "post", 
          data : query,
-         url : "../ranking/rankingProcess.jsp",
+         url : "../Ranking/rankingProcessing.jsp",
          success:function(data){
-
+			window.location = "../Main/Main.jsp"
          }
          });
       });
@@ -46,6 +48,11 @@
    List<RankingDataBean> list4 = new ArrayList<RankingDataBean>();
    List<RankingDataBean> list5 = new ArrayList<RankingDataBean>();
    RankingDataBean temp = new RankingDataBean();
+   int r1=0;
+   int r2=0;
+   int r3=0;
+   int r4=0;
+   int r5=0;
 
    list = manager.GetRanking();
    
@@ -72,62 +79,10 @@
    }
     
 %>
-<%
-	int r1=0;
-	int r2=0;
-	int r3=0;
-	int r4=0;
-	int r5=0;
-	String id = "";
-	id = (String)session.getAttribute("userEmail");
-if(id==null||id.equals("")){
-	
-	}
-else{
-	List<RankingDataBean> listUser = manager.GetUserRanking(id);
-	%><table>
-  <tr>
-    <td>Stage1</td>
-    <td>Stage2</td>
-    <td>Stage3</td>
-    <td>Stage4</td>
-    <td>Stage5</td>
-  </tr>
-  <%if(listUser!=null){ %>
-  <tr>
-  	<%for(int i=0;i<listUser.size();i++){
-  		RankingDataBean temp1 = listUser.get(i);
-  	
-  		if(temp1.getStage()==1){
-  			r1=temp1.getRecording();
-	  	}
-	  	else if(temp1.getStage()==1){
-	  		r2=temp1.getRecording();
-  		}
-		else if(temp1.getStage()==1){
-			r3=temp1.getRecording();
-  		}
-		else if(temp1.getStage()==1){
-			r4=temp1.getRecording();
-  		}
-		else if(temp1.getStage()==1){
-			r5=temp1.getRecording();
-  		}
-  	}
-    %>
-    <td><%=r1 %></td> 
-    <td><%=r2 %></td>
-    <td><%=r3 %></td>
-    <td><%=r4 %></td>
-    <td><%=r5 %></td>
-    <%} %>
-  </tr>
-</table>
-<%} %>
-
+<div align="center">
 <table>
-   <thead>
-      <tr><th colspan ="2">1</th>
+      <tr>
+      <th colspan ="2">1</th>
       <th colspan ="2">2</th>
       <th colspan ="2">3</th>
       <th colspan ="2">4</th>
@@ -145,44 +100,43 @@ else{
          <th>User</th>
          <th>Recording</th>
       </tr>
-   </thead>
       <%
       for(int i=0; i<5; i++) {
-    	  RankingDataBean article = null;
-    	  int recording1 = 0;
-    	  int recording2= 0;
-    	  int recording3= 0;
-    	  int recording4= 0;
-    	  int recording5= 0;
-    	  String user1= null;
-    	  String user2= null;
-    	  String user3= null;
-    	  String user4= null;
-    	  String user5= null;
-    	 if(i<list1.size()){
-         	article = list1.get(i);
-         	user1 = globalManager.GetUser(article.getUserNumber());
-         	recording1 = article.getRecording();
-      	}
+         RankingDataBean article = null;
+         String recording1 = "";
+         String recording2= "";
+         String recording3= "";
+         String recording4= "";
+         String recording5= "";
+         String user1= null;
+         String user2= null;
+         String user3= null;
+         String user4= null;
+         String user5= null;
+        if(i<list1.size()){
+            article = list1.get(i);
+            user1 = globalManager.GetUser(article.getUserNumber());
+            recording1 = globalManager.msToString(article.getRecording());
+         }
       if(i<list2.size()){
          article = list2.get(i);
          user2 = globalManager.GetUser(article.getUserNumber());
-         recording2 = article.getRecording();
+         recording2 = globalManager.msToString(article.getRecording());
       }
       if(i<list3.size()){
          article = list3.get(i);
          user3 = globalManager.GetUser(article.getUserNumber());
-         recording3 = article.getRecording();
+         recording3 = globalManager.msToString(article.getRecording());
       }
       if(i<list4.size()){
          article = list4.get(i);
          user4 = globalManager.GetUser(article.getUserNumber());
-         recording4 = article.getRecording();
+         recording4 = globalManager.msToString(article.getRecording());
       }
       if(i<list5.size()){   
-      	article = list5.get(i);
+         article = list5.get(i);
          user5 = globalManager.GetUser(article.getUserNumber());
-         recording5 = article.getRecording();
+         recording5 = globalManager.msToString(article.getRecording());
       }
        %>
        <tr>
@@ -194,8 +148,9 @@ else{
        </tr>
        <%} %>
 </table>
+</div>
 <p/>
-
-<input type="text" id="stage">
-<input type="text" id="record">
-<button id = "commit">commit</button>
+<label>기록입력 </label>
+<input type="text" id="stage" placeholder="stage" <%if(session.getAttribute("userNumber")==null) {%> disabled="disabled" <%} %>>
+<input type="text" id="record" placeholder="record(ms)" <%if(session.getAttribute("userNumber")==null) {%> disabled="disabled" <%} %>>
+<button id = "commit" <%if(session.getAttribute("userNumber")==null) {%> disabled="disabled" <%} %>>commit</button>

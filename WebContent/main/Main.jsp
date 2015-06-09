@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
-<title>title</title>
+<title>Time to Travel</title>
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 
 <script src="../js/jquery-2.1.3.min.js"></script>
@@ -12,11 +12,14 @@ $(document).ready(function() {
 	$("#mainClick").click(function(){
 		window.location.href = "Main.jsp";
 	}); 
+	$("#NoticeBoardClick").click(function(){
+		$("#meun").load("../Notice/noticeForm.jsp");
+	}); 
 	$("#BulletinBoardClick").click(function(){
 		$("#meun").load("../BulletinBoard/ListingForm.jsp");
 	}); 
 	$("#RankingClick").click(function(){
-		alert("test");
+		$("#meun").load("../Ranking/rankingListing.jsp");
 	}); 
 	$("#ghost").click(function(){
 		$("#meun").load("../Ghost/GhostForm.jsp");
@@ -42,44 +45,41 @@ $(document).ready(function() {
 	</div>
  	<br></br>
      <!-- 헤더 -->
-    <div id="content">
-    <div id="inner">
-      <div class="right folat-r">
-        <div id="top">
           <ul id="meun">
           	<%
         	try{
+        	String type = request.getParameter("type");
         	String number = request.getParameter("num");
-        	if(number != null){
-        		%><jsp:include page="../BulletinBoard/ViewingForm.jsp" >
-        			<jsp:param name="num" value = "<%=number %>"/>
-        		</jsp:include>
-        	
+        		if(type != null) {
+	        		if(number != null){
+        	%>
+		        	<jsp:include page="../Notice/ViewNotice.jsp" >
+		        		<jsp:param name="num" value = "<%=number %>"/>
+		        	</jsp:include>
+			<%
+	        		}
+	        	}
+        		else if(number != null){
+        	%>
+		        	<jsp:include page="../BulletinBoard/ViewingForm.jsp" >
+		        		<jsp:param name="num" value = "<%=number %>"/>
+		        	</jsp:include>
         	<%
-        	}}catch(Exception e){
+        		} else {
+		        	String id = "";
+					id=(String)session.getAttribute("userEmail");
+					if(id==null||id.equals("")){      
+			%>
+						<jsp:include page="LoginForm.jsp"></jsp:include>
+			<% 		}else{ %>
+						<jsp:include page="ManagementForm.jsp"></jsp:include>
+			<%		} 
+		        }
+        	}catch(Exception e){
         		e.printStackTrace();
         	}
         	%>
-            <%String id="";
-        		try{
-        			id=(String)session.getAttribute("userEmail");
-        			if(id==null||id.equals("")){        
-        		%>
-			<jsp:include page="LoginForm.jsp"></jsp:include>
-				<% }else{ %>
-			<jsp:include page="ManagementForm.jsp"></jsp:include>
-				<%} }catch(Exception e){
-				e.printStackTrace();
-				}
-				%>
           </ul>
-        </div>
-      </div>
-   <br></br>
-   <hr></hr>
-      <jsp:include page="../Notice/noticeForm.jsp"></jsp:include>
-    </div>
-  </div>
      
      
     
@@ -87,12 +87,11 @@ $(document).ready(function() {
    <!-- 메인화면 -->
    <br></br>
    <hr></hr>
-   <div id="wrap">
-     <div id="footer">
-    <div id="ftlink"> <a href="#">Home</a> | <a href="#">About Us</a> | <a href="#">Production</a> | <a href="#">Submission</a> | <a href="#">Contact</a> </div>
-    <p id="copyright">Time To Travel</p>
-  </div>
-  </div>
+   <font color="grey" size="2">
+   source: <a href="https://github.com/MCompan/CommunityServer">https://github.com/MCompan/CommunityServer</a>
+   <br></br>
+   Time To Travel
+   </font>
   <!-- /footer -->
   </div>
 </body>

@@ -105,9 +105,12 @@ public class GhostProcessing {
 			connection = globalManager.getConnection();
 
 			pStatement = connection.prepareStatement(
-					"insert into Ranking " +
-					"values (?, ?, ?)");
-
+					"insert into Ghost " +
+					"values (?, ?, ?, ?)");
+			pStatement.setInt(1, data.getUserNumber());
+			pStatement.setInt(2, data.getStage());
+			pStatement.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+			pStatement.setString(4, data.getFilePath());
 			pStatement.executeUpdate();
 			state = 1;
 			
