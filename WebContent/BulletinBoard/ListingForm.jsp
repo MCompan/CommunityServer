@@ -64,7 +64,8 @@ Articles, Total: <%=count %>
 	 	%>
 	 	<tr>
 	 		<td align="center"><%=num %>
-	 		<td><a href ="../BulletinBoard/ViewingForm.jsp?num=<%=num %>"><%=subject %></a>
+	 		<!-- <td><a href ="../BulletinBoard/ViewingForm.jsp?num=<%=num %>"><%=subject %></a> -->
+	 		<td><a href ="jsp.jsp?num=<%=num %>"><%=subject %></a>
 	 		<td><%=user %>
 	 		<td align="center"><%=readCount %>
 	 		<td><%=date %></td>
