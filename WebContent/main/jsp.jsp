@@ -18,7 +18,7 @@ $(document).ready(function() {
 		$("#meun").load("../BulletinBoard/ListingForm.jsp");
 	}); 
 	$("#RankingClick").click(function(){
-		alert("test");
+		$("#meun").load("../ranking/rankingListing.jsp");
 	});
 	$("#information").click(function(){
 		alert("test");

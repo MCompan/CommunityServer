@@ -58,7 +58,7 @@ public class RankingProcessing {
 		}
 		return ranking;
 	}	
-	public List<RankingDataBean> GetUserRanking(int userEmail) {
+	public List<RankingDataBean> GetUserRanking(String userEmail) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		ResultSet resultSet= null;
@@ -74,6 +74,7 @@ public class RankingProcessing {
 												"from Users " +
 												"where Users.userEmail = ?) " +
 					"order by stage asc");
+			pStatement.setString(1,userEmail);
 			resultSet = pStatement.executeQuery();
 			if(resultSet.next()) {
 				ranking = new ArrayList<RankingDataBean>();
