@@ -9,7 +9,7 @@
 
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
-$(document).ready(function() {
+$(document).ready(function() {	
 	$("#mainClick").click(function(){
 		window.location.href = "jsp.jsp";
 		
@@ -19,14 +19,14 @@ $(document).ready(function() {
 	}); 
 	$("#RankingClick").click(function(){
 		alert("test");
-	}); 
+	});
 	$("#information").click(function(){
 		alert("test");
 	}); 
 });
 </script>
+</head>
 
-</head> 
 	<body>
 	<div id="wrap">
 		<div id="header">
@@ -49,6 +49,19 @@ $(document).ready(function() {
       <div class="right folat-r">
         <div id="top">
           <ul id="meun">
+          	<%
+        	try{
+        	String number = request.getParameter("num");
+        	if(number != null){
+        		%><jsp:include page="../BulletinBoard/ViewingForm.jsp" >
+        			<jsp:param name="num" value = "<%=number %>"/>
+        		</jsp:include>
+        	
+        	<%
+        	}}catch(Exception e){
+        		e.printStackTrace();
+        	}
+        	%>
             <%String id="";
         		try{
         			id=(String)session.getAttribute("userEmail");
@@ -61,7 +74,6 @@ $(document).ready(function() {
 				e.printStackTrace();
 				}
 				%>
-				
           </ul>
         </div>
       </div>
