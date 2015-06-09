@@ -76,4 +76,8 @@ public class Management {
 		}
 		return userNumber;
 	}
+	public String msToString(int ms) {
+		String value = ms / 60000 + ":" + (float)Math.round(ms % 60000) / 1000;
+		return value;
+	}
 }
