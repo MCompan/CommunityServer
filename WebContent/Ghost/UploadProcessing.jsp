@@ -37,5 +37,5 @@ try{
 	e.printStackTrace();
 }
 
-response.sendRedirect("../main/jsp.jsp");
+response.sendRedirect("../Main/Main.jsp");
 %>

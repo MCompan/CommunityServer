@@ -1,15 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0"/>
-<!-- <link rel="stylesheet" type="text/css" href="css/table.css" /> -->
-<link rel="stylesheet" type="text/css" href="css/style.css" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <link rel="stylesheet" type="text/css" href="css/styleMain.css" />
+<link rel="stylesheet" type="text/css" href="css/sign.css" />
+
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 	$(document).ready(function() {
+		$(".account-table").hide();
+		$("#ranking-box-link").click(function(){
+		  $(".account-table").fadeOut(100);
+		  $(".ranking-table").delay(100).fadeIn(100);
+		  $("#ranking-box-link").addClass("active");
+		  $("#account-box-link").removeClass("active");
+		});
+		$("#account-box-link").click(function(){
+		  $(".account-table").delay(100).fadeIn(100);;
+		  $(".ranking-table").fadeOut(100);
+		  $("#ranking-box-link").removeClass("active");
+		  $("#account-box-link").addClass("active");
+		});
+		
 		$("#Logout").click(function() {
 			var query = {
 				type:"logout",}
@@ -28,7 +39,7 @@
 					}
 				}
 			 });
-			window.location.href = "jsp.jsp";
+			window.location.href = "Main.jsp";
 		});
 
 		$("#ChangeEmail").click(function() {
@@ -47,7 +58,7 @@
 				success:function(data){
 					if(data == 1) {
 						//Success Change
-						window.location.href = "jsp.jsp";
+						window.location.href = "Main.jsp";
 						$("#result").text("Success Change Email");
 					} else if(data == -1) {
 						//Can not Connect
@@ -74,7 +85,7 @@
 					if(data == 1) {
 						//Success Withdrawal
 						$("#result").text("Success Withdrawal");
-						window.location.href = "jsp.jsp";
+						window.location.href = "Main.jsp";
 					} else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");
@@ -88,6 +99,28 @@
 	});
 </script>
 <% String email = (String)session.getAttribute("userEmail"); %>
+
+  <div class="management-box">
+    <div class="lb-header">
+      <a href="#" class="active" id="ranking-box-link">My Ranking</a>
+      <a href="#" id="account-box-link">Account</a>
+    </div>
+	<div class="ranking-table">
+		
+	</div>
+    <div class="account-table">
+      <div class="u-form-group">
+        <input type="text" id="userEmail_signup" placeholder="New Email"/>
+      </div>
+      <div class="u-form-group">
+        <button id="ChangeEmail">Confirm</button>
+      </div>
+    </div>
+      <div class="u-form-group2">
+        <button id="logout">LOG OUT</button>
+      </div>
+  </div>
+
 <table class="type09">
  <thead>
     <tr>
@@ -108,25 +141,4 @@
     	 <td colspan="2"><label id="Withdrawal" class="btn">계정삭제</label></td>
     </tr>
     </tbody>
-</table>   
-
- <font color="white">result:</font>
-	<div id="result" ></div>
-	
-<!-- 
-<table border="2" style="font-size: large; border-color: blue; border-collapse: collapse;">
-
-	<tr>
-		<td colspan="3" align="center">Management
-	</tr>
-	<tr align="center">
-		<td colspan="2"><button id="Logout">로그아웃</button>
-	</tr>
-	<tr>
-		<td><input type="text" id="newEmail">
-		<td><button id="ChangeEmail">이메일 변경</button>
-	</tr>
-	<tr align="center">
-		<td colspan="2"><button id="Withdrawal">계정 삭제</button>
-	</tr>
-</table> -->
+</table>

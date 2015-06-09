@@ -5,7 +5,7 @@
 <%@ page import = "BulletinBoard.BoardDataBean" %>
 <%@ page import = "BulletinBoard.BoardProcessing" %>
 <%@ page import = "Global.Management" %>
-<link rel="stylesheet" type="text/css" href="../main/css/table.css" />
+<link rel="stylesheet" type="text/css" href="../Main/css/table.css" />
 <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0"/>
 
 <script src="../js/jquery-2.1.3.min.js"></script>
@@ -65,7 +65,7 @@ Articles, Total: <%=count %>
 	 	<tr>
 	 		<td align="center"><%=num %>
 	 		<!-- <td><a href ="../BulletinBoard/ViewingForm.jsp?num=<%=num %>"><%=subject %></a> -->
-	 		<td><a href ="jsp.jsp?num=<%=num %>"><%=subject %></a>
+	 		<td><a href ="Main.jsp?num=<%=num %>"><%=subject %></a>
 	 		<td><%=user %>
 	 		<td align="center"><%=readCount %>
 	 		<td><%=date %></td>

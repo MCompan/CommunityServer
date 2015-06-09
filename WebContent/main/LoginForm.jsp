@@ -60,10 +60,10 @@
 				success:function(data){
 					if(data == 2) {
 						$("#result").text("Success Login by Admin");
-						window.location = "jsp.jsp"
+						window.location = "Main.jsp"
 					}else if(data == 1) {
 						//Success Login
-						window.location = "jsp.jsp"
+						window.location = "Main.jsp"
 					}else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");
@@ -104,7 +104,7 @@
 					if(data == 1) {
 						//Success Registration
 						$("#result").text("Success Registration");
-						window.location = "jsp.jsp"
+						window.location = "Main.jsp"
 					}
 					else if(data == -1) {
 						//Can not Connect
