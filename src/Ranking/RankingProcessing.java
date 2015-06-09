@@ -16,8 +16,13 @@ public class RankingProcessing {
 	
 	public int SetRanking(RankingDataBean data) {
 		int state = -1;
-		if(isInData(data)) {
-			state = UpdateRanking(data);
+		if(IsInData(data)) {
+			if(IsUpdatable(data)) {
+				state = UpdateRanking(data);
+			} else {
+				// Can not update because record less than origin
+				state = -2;
+			}
 		} else {
 			state = AddRanking(data);
 		}
@@ -58,7 +63,7 @@ public class RankingProcessing {
 		}
 		return ranking;
 	}	
-	public List<RankingDataBean> GetUserRanking(int userEmail) {
+	public List<RankingDataBean> GetUserRanking(String userEmail) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		ResultSet resultSet= null;
@@ -74,6 +79,7 @@ public class RankingProcessing {
 												"from Users " +
 												"where Users.userEmail = ?) " +
 					"order by stage asc");
+			pStatement.setString(1, userEmail);
 			resultSet = pStatement.executeQuery();
 			if(resultSet.next()) {
 				ranking = new ArrayList<RankingDataBean>();
@@ -145,7 +151,35 @@ public class RankingProcessing {
 		}
 		return state;
 	}
-	boolean isInData (RankingDataBean data) {
+	boolean IsUpdatable (RankingDataBean data) {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet= null;
+		boolean isUpdatabe = false;		
+		try{
+			connection = globalManager.getConnection();
+
+			pStatement = connection.prepareStatement(
+					"select recording " +
+					"from Ranking " +
+					"where userNumber = ? and stage = ?");
+			pStatement.setInt(1, data.getUserNumber());
+			pStatement.setInt(2, data.getStage());
+			resultSet = pStatement.executeQuery();
+			if(resultSet.next()) {
+				if(resultSet.getInt("recording") > data.getRecording())
+					isUpdatabe = true;
+			}
+		} catch(Exception e) { 
+			e.printStackTrace(); 
+		} finally {
+			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+			if (pStatement != null) try { pStatement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+	return isUpdatabe;
+	}
+	boolean IsInData (RankingDataBean data) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		ResultSet resultSet= null;

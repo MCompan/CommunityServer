@@ -1,18 +1,26 @@
-
-<%@page import="java.io.Console"%>
-<%@page import="com.sun.org.apache.xml.internal.resolver.helpers.Debug"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-<link rel="stylesheet" href="css/style.css">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-<link rel="stylesheet" type="text/css" href="css/styleMain.css" />
+<link rel="stylesheet" type="text/css" href="css/sign.css" />
 
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script>
 	$(document).ready(function() {
+		$(".email-signup").hide();
+		$("#signup-box-link").click(function(){
+		  $(".email-login").fadeOut(100);
+		  $(".email-signup").delay(100).fadeIn(100);
+		  $("#login-box-link").removeClass("active");
+		  $("#signup-box-link").addClass("active");
+		});
+		$("#login-box-link").click(function(){
+		  $(".email-login").delay(100).fadeIn(100);;
+		  $(".email-signup").fadeOut(100);
+		  $("#login-box-link").addClass("active");
+		  $("#signup-box-link").removeClass("active");
+		});
+		
 		var cookie = document.cookie;
 		if(cookie.length > 0) {
 			var startEmailIndex = cookie.indexOf("userEmail");
@@ -36,9 +44,7 @@
 				$("#userPassword").val(cookie.substring(startPasswordIndex+1, endPasswordIndex));
 			}
 		}
-		$("#registration").click(function() {
-			$("#meun").load("RegistrationForm.jsp");
-		});
+		
 		$("#login").click(function() {
 			var userEmail = $("#userEmail").val();
 			var userPassword = $("#userPassword").val();
@@ -54,27 +60,79 @@
 				success:function(data){
 					if(data == 2) {
 						$("#result").text("Success Login by Admin");
-						$("#mainForm").load("ManagementForm.jsp");
+						window.location = "jsp.jsp"
 					}else if(data == 1) {
 						//Success Login
-						$("#result").text("Success Login");
-						$("#mainForm").load("ManagementForm.jsp");
+						window.location = "jsp.jsp"
 					}else if(data == -1) {
 						//Can not Connect
 						$("#result").text("Can not Connect");
 					}else if(data == -2) {
 						//Wrong password
-						$("#result").text("Wrong password");
+						alert("잘못된 비밀번호입니다");
 					}else if(data == -3) {
 						//No ID
-						$("#result").text("No ID");
+						alert("잘못된 아이디입니다");
 					}else if(data == -4) {
 						//Wrong Email
-						$("#result").text("Wrong Email");
+						alert("잘못된 아이디입니다");
+					}
+					clearPassword();
+				}
+			 });
+		});
+
+		$("#signup").click(function() {
+			var userEmail = $("#userEmail_signup").val();
+			var userPassword = $("#userPassword_signup").val();
+			var userConfirmPassword = $("#userConfirmPassword_signup").val();
+			if(userEmail == "") { alert("이메일을 입력하세요"); clearPassword(); return; }
+			if(userPassword == "") { alert("비밀번호를 입력하세요"); clearPassword(); return; }
+			if(userPassword != userConfirmPassword) { alert("비밀번호를 확인하세요"); clearPassword(); return; }
+
+			var query = {
+					type:"registration",
+					userID:userEmail,
+					userEmail:userEmail,
+					userPassword:userPassword};
+			$.ajax({
+				type:"post",
+				url:"Processing.jsp",
+				data:query,
+				success:function(data){
+					$("#result").text(data);
+					if(data == 1) {
+						//Success Registration
+						$("#result").text("Success Registration");
+						window.location = "jsp.jsp"
+					}
+					else if(data == -1) {
+						//Can not Connect
+						$("#result").text("Can not Connect");
+					}
+					else if(data == -2) {
+						//Overlap Email
+						alert("이미 있는 이메일입니다");
+						$("#result").text("Overlap Email");
+					}
+					else if(data == -3) {
+						//Wrong Access
+						alert("잘못된 접근입니다");
+						$("#result").text("Wrong Access");
+					}
+					else if(data == -4) {
+						//null ID
+						alert("이미 있는 이메일입니다");
 					}
 				}
 			 });
 		});
+		
+		function clearPassword() {
+			$("#userPassword").val("");
+			$("#userPassword_signup").val("");
+			$("#userConfirmPassword_signup").val("");
+		}
 	});
 </script>
 <div id="fb-root"></div>
@@ -137,24 +195,39 @@
 </script>
 
 <body>
-  <form method="post"  class="login">
-  	<font size="40px" color="white">
-  	<p>Login</p></font>
-    <p>
-      <label id="new">Email:</label>
-      <input type="text" name="userEmail" id="userEmail" autofocus>
-    </p>
 
-    <p>
-      <label id="new">Password:</label>
-      <input type="password" name="userPassword" id="userPassword">
-    </p>
-<p></p>
-    <p class="login-submit">
-      <button id="login" class="login-button">Login</button>
-    </p>
-	<button id="registration" class ="btn">Registration</button>
-	 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> 
-  </form>
+  <div class="login-box">
+    <div class="lb-header">
+      <a href="#" class="active" id="login-box-link">Login</a>
+      <a href="#" id="signup-box-link">Sign Up</a>
+    </div>
+    <form class="email-login">
+      <div class="u-form-group">
+        <input type="text" id="userEmail"  placeholder="Email"/>
+      </div>
+      <div class="u-form-group">
+        <input type="password" id="userPassword" placeholder="Password"/>
+      </div>
+    <div class="social-login">
+      <a href="#" id="login">Log in</a>
+      <a href="#">Login in with facebook</a>
+    </div>
+    </form>
+    <form class="email-signup">
+      <div class="u-form-group">
+        <input type="text" id="userEmail_signup" placeholder="Email"/>
+      </div>
+      <div class="u-form-group">
+        <input type="password" id="userPassword_signup" placeholder="Password"/>
+      </div>
+      <div class="u-form-group">
+        <input type="password" id="userConfirmPassword_signup" placeholder="Confirm Password"/>
+      </div>
+      <div class="u-form-group">
+        <button id="signup">Sign Up</button>
+      </div>
+    </form>
+  </div>
+  
 </body>
 </html>
