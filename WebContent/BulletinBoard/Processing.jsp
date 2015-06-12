@@ -1,3 +1,5 @@
+<%@page import="BulletinBoard.CommentsDataBean"%>
+<%@page import="BulletinBoard.CommentsProcessing"%>
 <%@page import="BulletinBoard.BoardDataBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -51,6 +53,30 @@
 		int num = Integer.parseInt(request.getParameter("num"));
 		
 		state = manager.DeleteWriting(num);
+		
+		out.println(state);
+	} else if(type.equals("commentSubmit")) {
+		int state = -1;
+		
+		CommentsProcessing commentManager = CommentsProcessing.getInstance();
+		CommentsDataBean commentData = new CommentsDataBean();
+		
+		commentData.setArticleNumber(Integer.parseInt(request.getParameter("articleNumber")));
+		commentData.setUserNumber(Integer.parseInt(request.getParameter("userNumber")));
+		commentData.setContent(request.getParameter("content"));
+		
+		state = commentManager.WriteComment(commentData);
+		
+		out.println(state);
+	} else if(type.equals("commentDelete")) {
+		int state = -1;
+		
+		CommentsProcessing commentManager = CommentsProcessing.getInstance();
+		
+		String commentNumber = request.getParameter("num");
+		System.out.println(commentNumber);
+		System.out.println(Integer.parseInt(commentNumber));
+		commentManager.DeleteComment(Integer.parseInt(commentNumber));
 		
 		out.println(state);
 	}

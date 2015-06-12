@@ -38,11 +38,10 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
   margin-bottom: 10px;
 }
 .account-table {
-	
+  text-align:center;
 }
 .u-form-group, .u-form-group2, .u-form-group3{
   position:relative;
-  float:left;
   width:100%;
   margin-bottom: 10px;
 }
@@ -64,6 +63,7 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
 }
 .u-form-group button{
   width:50%;
+  margin-left:40px auto;
   background-color: #FF828B;
   border: none;
   outline: none;
@@ -76,6 +76,7 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
 }
 .u-form-group button:HOVER{
 	cursor: pointer;
+	background-color: #E3747C;
 }
 .u-form-group2 button{
   width:100%;
@@ -91,21 +92,7 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
 }
 .u-form-group2 button:HOVER{
 	cursor: pointer;
-}
-.u-form-group3 button{
-  width:50%;
-  background-color: #FF828B;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 14px;
-  font-weight: normal;
-  padding: 14px 0;
-  border-radius: 2px;
-  text-transform: uppercase;
-}
-.u-form-group3 button:HOVER{
-	cursor: pointer;
+	background-color: #E3747C;
 }
 .forgot-password{
   width:50%;

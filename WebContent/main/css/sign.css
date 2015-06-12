@@ -58,8 +58,14 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
 .social-login a:first-child{
   background-color: #FF828B;
 }
+.social-login a:first-child:HOVER{
+  background-color: #E3747C;
+}
 .social-login a:last-child{
   background-color: #49639F;
+}
+.social-login a:last-child:HOVER{
+  background-color: #334670;
 }
 .email-login,.email-signup{
   position:relative;
@@ -105,6 +111,7 @@ box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.33);
 }
 .u-form-group button:HOVER{
 	cursor: pointer;
+	background-color: #DB7078;
 }
 .forgot-password{
   width:50%;

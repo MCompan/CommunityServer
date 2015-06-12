@@ -88,7 +88,7 @@ $(document).ready(function() {
    <br></br>
    <hr></hr>
    <font color="grey" size="2">
-   source: <a href="https://github.com/MCompan/CommunityServer">https://github.com/MCompan/CommunityServer</a>
+   source code: <a href="https://github.com/MCompan/CommunityServer">https://github.com/MCompan/CommunityServer</a>
    <br></br>
    Time To Travel
    </font>

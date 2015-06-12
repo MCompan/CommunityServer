@@ -31,7 +31,8 @@
          data : query,
          url : "../Ranking/rankingProcessing.jsp",
          success:function(data){
-			window.location = "../Main/Main.jsp"
+        	window.location.reload(true);
+			//window.location = "../Main/Main.jsp"
          }
          });
       });
@@ -82,7 +83,7 @@
 <div align="center">
 <table>
       <tr>
-      <th colspan ="2">1</th>
+      <th colspan ="2" style="text-align: center;">1</th>
       <th colspan ="2">2</th>
       <th colspan ="2">3</th>
       <th colspan ="2">4</th>

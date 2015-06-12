@@ -1,8 +1,12 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import = "BulletinBoard.BoardDataBean" %>
 <%@ page import = "BulletinBoard.BoardProcessing" %>
+<%@ page import = "BulletinBoard.CommentsDataBean" %>
+<%@ page import = "BulletinBoard.CommentsProcessing" %>
 <%@ page import = "Global.Management" %>
 <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0"/>
 
@@ -12,7 +16,7 @@
 		$("#modify").click(function() {
 			query = {
 				type:"modify",
-				num:num,
+				num:$("#num").val(),
 				subject:$("#subject").val(),
 				content:$("#content").val()
 			};
@@ -33,11 +37,11 @@
 		$("#delete").click(function() {
 			query = {
 				type:"delete",
-				num:num
+				num:$("#num").val(),
 			};
 			$.ajax({
 				type:"post",
-				url:"Processing.jsp",
+				url:"../BulletinBoard/Processing.jsp",
 				data:query,
 				success:function(data){
 					if(data == -1) {
@@ -51,6 +55,48 @@
 		});
 		$("#back").click(function() {
 			window.history.back();
+		});
+		$("#commentSubmit").click(function() {
+			query = {
+					type:"commentSubmit",
+					userNumber:$("#userNumber").val(),
+					articleNumber:$("#num").val(),
+					content:$("#comment").val()
+			};
+			$.ajax({
+				type:"post",
+				url:"../BulletinBoard/Processing.jsp",
+				data:query,
+				success:function(data){
+					if(data == -1) {
+						$("#boardResult").text("Fail to connect");
+					} else if(data == 1) {
+						$("#boardResult").text("Success to deletion");
+					}
+				}
+			});
+			window.location.reload(true);
+		});
+		$("#commentDelete").click(function() {
+			query = {
+					type:"commentDelete",
+					userNumber:$("#userNumber").val(),
+					articleNumber:$("#num").val(),
+					content:$("#comment").val()
+			};
+			$.ajax({
+				type:"post",
+				url:"../BulletinBoard/Processing.jsp",
+				data:query,
+				success:function(data){
+					if(data == -1) {
+						$("#boardResult").text("Fail to connect");
+					} else if(data == 1) {
+						$("#boardResult").text("Success to deletion");
+					}
+				}
+			});
+			window.location.reload(true);
 		});
 	});
 </script>
@@ -77,6 +123,20 @@ try{
 }catch(Exception e) {}
 %>
 
+<%
+	CommentsProcessing commentManager = CommentsProcessing.getInstance();
+	List<CommentsDataBean> comments = null;
+	comments = commentManager.GetCommentList(num);
+	int userNumber = -1;
+	
+	try{
+		userNumber = Integer.parseInt(session.getAttribute("userNumber").toString());
+	}catch(Exception e) {}
+%>
+
+<input type="hidden" id="num" value="<%=num %>">
+<input type="hidden" id="userNumber" value="<%=userNumber %>">
+
 <table border="2" style="font-size: large; border-color: blue; border-collapse: collapse;">
 	<tr>
 		<td>No. <label id="num"><%=num %></label>
@@ -95,3 +155,40 @@ try{
 		<td><button id="delete" <%if(!isWriter) {%> disabled="disabled" <%} %>>삭제</button>
 		<td><button id="back">뒤로</button>
 </table>
+
+<br>
+<br>
+<table>
+	<tr>
+		<td><label>댓글</label></td>
+		<td><input type="text" id="comment" placeholder="comment" style="width: 600px" <%if(userNumber <= 0) {%> disabled="disabled" <%} %>></td>
+		<td><button id="commentSubmit" <%if(userNumber <= 0) {%> disabled="disabled" <%} %>>입력</button></td>
+</table>
+<br>
+
+<%	
+	if (comments != null) {
+%>
+<table border="1">
+	<tr>
+		<th>Email
+		<th>Comment
+		<th colspan="2">Date
+<%
+		for (int i = 0; i < comments.size(); i++) {
+			CommentsDataBean commentData = comments.get(i);
+			int commentNumber = commentData.getNum();
+			String commentEmail = globalManager.GetUser(commentData.getUserNumber());
+%>
+	<tr>
+		<td style="width:150px;"><%=commentEmail %>
+		<td style="width:350px;"><%=commentData.getContent() %></td>
+		<td style="width:150px;"><%=dateFormat.format(commentData.getRegistrationDate()) %></td>
+		<td><button id="commentDelete" <%if(userNumber != commentData.getUserNumber()) {%> disabled="disabled" <%} %> onclick="../BulletinBoard/Processing.jsp?type=commentDelete&num=<%=commentNumber %>">delete</button></td>
+<%
+		}
+%>
+</table>
+<%
+	}
+%>

@@ -16,7 +16,7 @@ create table Users (
 	userNumber int primary key not null,
 	userID varchar(40) not null,
 	userEmail varchar(40) not null,
-	userPassword varchar(60)
+	userPassword varchar(60)w
 );
 create table Friends (
 	userNumber int not null,

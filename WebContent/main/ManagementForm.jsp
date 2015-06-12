@@ -183,10 +183,12 @@
       <div class="u-form-group">
         <button id="ChangeEmail">Change Email</button>
       </div>
-      <div class="u-form-group3">
+      <div class="u-form-group">
         <button id="Withdrawal">Withdrawal</button>
+        <br>
+        <br>
       </div>
-    </div>
+      </div>
       <div class="u-form-group2">
         <button id="Logout">LOG OUT</button>
       </div>

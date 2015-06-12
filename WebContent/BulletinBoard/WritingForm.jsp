@@ -29,7 +29,7 @@
 					}
 				}
 			});
-			$("#meun").load("../BulletinBoard/ListingForm.jsp");
+			window.location = "../Main/Main.jsp";
 		});
 		$("#cancel").click(function() {
 			$("#meun").load("../BulletinBoard/ListingForm.jsp");

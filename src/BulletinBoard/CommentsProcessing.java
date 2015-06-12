@@ -57,7 +57,6 @@ public class CommentsProcessing {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		int state = -1;
-		
 		try{
 			connection = globalManager.getConnection();
 			pStatement = connection.prepareStatement(
